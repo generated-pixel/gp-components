@@ -1,3 +1,3 @@
-export * from './lib/input/input';
-export * from './lib/menu/menu';
-export * from './lib/block/block';
+export * from './input/input';
+export * from './menu/menu';
+export * from './block/block';

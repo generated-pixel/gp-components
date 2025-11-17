@@ -1,0 +1,30 @@
+{
+  "name": "gp-components",
+  "version": "0.0.1",
+  "description": "Angular 20 component library with Tailwind CSS for inputs, menus, and blocks",
+  "keywords": [
+    "angular",
+    "angular20",
+    "components",
+    "tailwindcss",
+    "ui",
+    "forms",
+    "menu",
+    "dropdown",
+    "input"
+  ],
+  "author": "Generated Pixels",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/generated-pixel/gp-components.git"
+  },
+  "peerDependencies": {
+    "@angular/common": "^20.3.0",
+    "@angular/core": "^20.3.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

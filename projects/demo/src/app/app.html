@@ -1,0 +1,148 @@
+<div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 p-8">
+  <div class="max-w-6xl mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h1 class="text-5xl font-bold text-gray-900 dark:text-white mb-4">
+        {{ title }}
+      </h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400">
+        Angular 20 Component Library with Tailwind CSS
+      </p>
+    </div>
+
+    <!-- Components Showcase -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      
+      <!-- Input Components Block -->
+      <gp-block 
+        title="Input Components" 
+        subtitle="Various input types with styling"
+        padding="lg"
+        shadow="lg"
+        rounded="xl"
+      >
+        <div class="space-y-4">
+          <gp-input 
+            label="Text Input" 
+            placeholder="Enter text..." 
+            type="text"
+            id="text-input"
+          ></gp-input>
+          
+          <gp-input 
+            label="Email Address" 
+            placeholder="your@email.com" 
+            type="email"
+            id="email-input"
+            [required]="true"
+          ></gp-input>
+          
+          <gp-input 
+            label="Password" 
+            placeholder="Enter password..." 
+            type="password"
+            id="password-input"
+          ></gp-input>
+          
+          <gp-input 
+            label="Phone Number" 
+            placeholder="+1 (555) 000-0000" 
+            type="tel"
+            id="tel-input"
+          ></gp-input>
+        </div>
+      </gp-block>
+
+      <!-- Menu Component Block -->
+      <gp-block 
+        title="Menu Components" 
+        subtitle="Dropdown menus with options"
+        padding="lg"
+        shadow="lg"
+        rounded="xl"
+      >
+        <div class="space-y-4">
+          <gp-menu 
+            label="Select an Option"
+            placeholder="Choose from menu..."
+            [items]="menuItems"
+            (itemSelected)="onMenuItemSelected($event)"
+          ></gp-menu>
+          
+          <gp-menu 
+            placeholder="Simple dropdown"
+            [items]="menuItems"
+          ></gp-menu>
+        </div>
+      </gp-block>
+
+      <!-- Block Component Showcase -->
+      <gp-block 
+        title="Block with Small Padding" 
+        padding="sm"
+        shadow="sm"
+        rounded="md"
+      >
+        <p class="text-gray-700 dark:text-gray-300">
+          This is a block with small padding and shadow.
+        </p>
+      </gp-block>
+
+      <gp-block 
+        title="Block with Large Shadow" 
+        subtitle="And extra large border radius"
+        padding="md"
+        shadow="xl"
+        rounded="xl"
+      >
+        <p class="text-gray-700 dark:text-gray-300">
+          This block has a large shadow and extra large border radius for emphasis.
+        </p>
+      </gp-block>
+
+      <!-- Full Width Examples -->
+      <div class="md:col-span-2">
+        <gp-block 
+          title="Full Width Block" 
+          subtitle="Spanning two columns with content"
+          padding="lg"
+          shadow="md"
+          rounded="lg"
+        >
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="text-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+              <div class="text-3xl mb-2">📝</div>
+              <h4 class="font-semibold text-gray-900 dark:text-white">Input Components</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                Text, email, password, and more input types
+              </p>
+            </div>
+            <div class="text-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+              <div class="text-3xl mb-2">📋</div>
+              <h4 class="font-semibold text-gray-900 dark:text-white">Menu Components</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                Dropdowns and selection menus with icons
+              </p>
+            </div>
+            <div class="text-center p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+              <div class="text-3xl mb-2">🎨</div>
+              <h4 class="font-semibold text-gray-900 dark:text-white">Block Components</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                Containers with customizable styling options
+              </p>
+            </div>
+          </div>
+        </gp-block>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center mt-12">
+      <gp-block padding="md" shadow="sm" rounded="lg" [border]="false">
+        <p class="text-gray-600 dark:text-gray-400">
+          Built with <span class="text-red-500">❤️</span> using Angular 20 and Tailwind CSS
+        </p>
+      </gp-block>
+    </div>
+  </div>
+</div>

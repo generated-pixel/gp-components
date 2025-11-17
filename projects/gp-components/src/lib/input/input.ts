@@ -10,20 +10,13 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputComponent),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class InputComponent implements ControlValueAccessor {
-  @Input() type: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url' = 'text';
-  @Input() placeholder = '';
-  @Input() label = '';
-  @Input() disabled = false;
-  @Input() required = false;
-  @Input() id = '';
-
   value: any = '';
-  
+
   onChange: any = () => {};
   onTouched: any = () => {};
 
@@ -39,9 +32,7 @@ export class InputComponent implements ControlValueAccessor {
     this.onTouched = fn;
   }
 
-  setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
-  }
+  setDisabledState(isDisabled: boolean): void {}
 
   onInput(event: Event): void {
     const target = event.target as HTMLInputElement;

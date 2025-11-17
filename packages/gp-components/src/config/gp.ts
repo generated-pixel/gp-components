@@ -1,18 +1,18 @@
-import { Subject } from "rxjs";
-import { Translations } from "../public-api";
-import { Injectable } from "@angular/core";
-import { GPConfigType } from "./gp-config.type";
+import { Subject } from 'rxjs';
+import { Translations } from '../public-api';
+import { Injectable } from '@angular/core';
+import { GPConfigType } from './gp-config.type';
 
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class GP {
   public translations: { [lang: string]: Translations } = {
-    "en-US": {
-      showPassword: "Show password",
-      hidePassword: "Hide password",
-      weak: "Weak",
-      medium: "Medium",
-      strong: "Strong",
-      passwordPrompt: "Enter a password",
+    'en-US': {
+      showPassword: 'Show password',
+      hidePassword: 'Hide password',
+      weak: 'Weak',
+      medium: 'Medium',
+      strong: 'Strong',
+      passwordPrompt: 'Enter a password',
     },
   };
 
@@ -22,13 +22,10 @@ export class GP {
 
   getTranslation(lang: string, key: string): any {
     let translation: string | undefined =
-      this.translations[lang][key as keyof typeof this.translations["en-US"]];
+      this.translations[lang][key as keyof (typeof this.translations)['en-US']];
 
     if (!translation) {
-      translation =
-        this.translations["en-US"][
-          key as keyof typeof this.translations["en-US"]
-        ];
+      translation = this.translations['en-US'][key as keyof (typeof this.translations)['en-US']];
     }
 
     return translation;
@@ -36,7 +33,7 @@ export class GP {
 
   setTranslations(lang: string, translation: Translations): void {
     if (!this.translations[lang]) {
-      this.translations[lang] = this.translations["en-US"];
+      this.translations[lang] = this.translations['en-US'];
     }
 
     this.translations[lang] = translation;

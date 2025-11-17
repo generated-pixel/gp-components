@@ -8,13 +8,13 @@
   "newProjectRoot": "packages",
   "projects": {
     "gp-components": {
-      "projectType": "library",
       "root": "packages/gp-components",
+      "projectType": "library",
       "sourceRoot": "packages/gp-components/src",
       "prefix": "gp",
       "architect": {
         "build": {
-          "builder": "@angular/build:ng-packagr",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "configurations": {
             "production": {
               "tsConfig": "packages/gp-components/tsconfig.lib.prod.json"
@@ -26,10 +26,14 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "packages/gp-components/tsconfig.spec.json"
           }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build:tslint",
+          "options": {}
         }
       }
     },

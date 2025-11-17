@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BlockComponent } from './block';
+import { Basecomponent } from './basecomponent';
 
-describe('Block', () => {
-  let component: BlockComponent;
-  let fixture: ComponentFixture<BlockComponent>;
+describe('Basecomponent', () => {
+  let component: Basecomponent;
+  let fixture: ComponentFixture<Basecomponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BlockComponent],
-    }).compileComponents();
+      imports: [Basecomponent]
+    })
+    .compileComponents();
 
-    fixture = TestBed.createComponent(BlockComponent);
+    fixture = TestBed.createComponent(Basecomponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

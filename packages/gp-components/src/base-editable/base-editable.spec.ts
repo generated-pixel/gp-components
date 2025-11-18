@@ -8,9 +8,8 @@ describe('BaseEditable', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BaseEditable]
-    })
-    .compileComponents();
+      imports: [BaseEditable],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(BaseEditable);
     component = fixture.componentInstance;

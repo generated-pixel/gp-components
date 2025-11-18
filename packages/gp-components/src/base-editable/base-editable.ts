@@ -1,9 +1,11 @@
-import { booleanAttribute, Component, Directive, input } from '@angular/core';
+import { booleanAttribute, Component, computed, Directive, input, signal } from '@angular/core';
+import { ControlValueAccessor } from '@angular/forms';
+import { BaseComponent } from '../public-api';
 
 @Directive({
   standalone: true,
 })
-export class BaseEditable {
+export class BaseEditable<T = any> extends BaseComponent<T> implements ControlValueAccessor {
   /**
    *  Whether the input is required.
    */
@@ -18,4 +20,57 @@ export class BaseEditable {
    * Whether the input is disabled.
    */
   disabled = input(undefined, { transform: booleanAttribute });
+
+  /**
+   * Whether the input is read-only.
+   */
+  readonly = input(undefined, { transform: booleanAttribute });
+
+  /**
+   * The input name.
+   */
+  name = input<string | undefined>();
+
+  _disabled = signal<boolean>(false);
+  $disabled = computed(() => this.disabled() || this._disabled());
+
+  onModelChanged: Function = () => {};
+  onModelTouched: Function = () => {};
+
+  updateDisabledState(isDisabled: boolean) {
+    this._disabled.set(isDisabled);
+  }
+
+  /**
+   * Writes a value to the input.
+   * @param obj
+   */
+  writeValue(obj: any): void {
+    throw new Error('Method not implemented.');
+  }
+
+  /**
+   * Registers a callback function that should be called when the control's value changes in the UI.
+   * @param fn
+   */
+  registerOnChange(fn: any): void {
+    this.onModelChanged = fn;
+  }
+
+  /**
+   * Registers a callback function that should be called when the control is touched.
+   * @param fn
+   */
+  registerOnTouched(fn: any): void {
+    this.onModelTouched = fn;
+  }
+
+  /**
+   * Sets the disabled state of the control.
+   * @param isDisabled
+   */
+  setDisabledState?(isDisabled: boolean): void {
+    this.updateDisabledState(isDisabled);
+    this.cd.markForCheck();
+  }
 }

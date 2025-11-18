@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input, input, NgModule } from '@angular/core';
+import { BaseInput } from '../base-input/base-input';
 
 @Component({
   selector: 'gp-password',
@@ -8,4 +9,12 @@ import { Component } from '@angular/core';
   styleUrl: './password.css',
   standalone: true,
 })
-export class Password {}
+export class PasswordComponent extends BaseInput {
+  @Input() placeholder?: string = '';
+}
+
+@NgModule({
+  imports: [PasswordComponent],
+  exports: [PasswordComponent],
+})
+export class GpPasswordModule {}

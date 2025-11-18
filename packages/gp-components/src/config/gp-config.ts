@@ -1,10 +1,10 @@
 import { Subject } from 'rxjs';
 import { Translations } from '../public-api';
 import { Injectable } from '@angular/core';
-import { GPConfigType } from './gp-config.type';
+import { GpConfigType } from './gp-config.type';
 
 @Injectable({ providedIn: 'root' })
-export class GP {
+export class GpConfig {
   public translations: Translations = {
     showPassword: 'Show password',
     hidePassword: 'Hide password',
@@ -15,7 +15,6 @@ export class GP {
   };
 
   private translationSource = new Subject<any>();
-
   public translationObservable = this.translationSource.asObservable();
 
   getTranslation(key: string): any {
@@ -27,7 +26,7 @@ export class GP {
     this.translationSource.next(this.translations);
   }
 
-  setConfig(config: GPConfigType) {
+  setConfig(config: GpConfigType) {
     const { translations } = config || {};
 
     if (translations) {

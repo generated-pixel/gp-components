@@ -1,5 +1,5 @@
 import { Translations } from '../public-api';
 
-export type GPConfigType = {
+export type GpConfigType = {
   translations?: { [lang: string]: Translations };
 };

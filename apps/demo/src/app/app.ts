@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { PasswordModule } from 'gp-components';
+import { GpPasswordModule } from 'gp-components';
 
 @Component({
   selector: 'app-root',
-  imports: [PasswordModule],
+  imports: [GpPasswordModule],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

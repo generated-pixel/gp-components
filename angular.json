@@ -10,11 +10,12 @@
     "gp-components": {
       "root": "packages/gp-components",
       "projectType": "library",
+      "schematics": {},
       "sourceRoot": "packages/gp-components/src",
       "prefix": "gp",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "builder": "@angular/build:ng-packagr",
           "configurations": {
             "production": {
               "tsConfig": "packages/gp-components/tsconfig.lib.prod.json"
@@ -26,7 +27,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/build:karma",
           "options": {
             "tsConfig": "packages/gp-components/tsconfig.spec.json"
           }

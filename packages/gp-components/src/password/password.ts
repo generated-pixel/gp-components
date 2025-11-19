@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, input, NgModule } from '@angular/core';
-import { BaseInput } from '../base-input/base-input';
+import { Component, input, NgModule } from '@angular/core';
+import { BaseInput } from 'gp-components/base-input';
 
 @Component({
   selector: 'gp-password',
@@ -10,11 +10,12 @@ import { BaseInput } from '../base-input/base-input';
   standalone: true,
 })
 export class PasswordComponent extends BaseInput {
-  @Input() placeholder?: string = '';
+  placeholder = input<string | undefined>();
+  togglePassword = input<boolean | undefined>();
 }
 
 @NgModule({
   imports: [PasswordComponent],
   exports: [PasswordComponent],
 })
-export class GpPasswordModule {}
+export class PasswordModule {}

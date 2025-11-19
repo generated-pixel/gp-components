@@ -6,7 +6,16 @@
     "strict": true,
     "paths": {
       "gp-components": [
+        "./packages/gp-components/src/public-api",
         "./dist/gp-components"
+      ],
+      "gp-components/*": [
+        "./packages/gp-components/src/*/public-api",
+        "./dist/gp-components/*"
+      ],
+      "gp-components/src/*": [
+        "./packages/gp-components/src/*/public-api",
+        "./dist/gp-components/src/*"
       ]
     },
     "noImplicitOverride": true,

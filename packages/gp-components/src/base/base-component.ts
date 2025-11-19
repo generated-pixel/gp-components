@@ -7,13 +7,13 @@ import {
   input,
   Renderer2,
 } from '@angular/core';
-import { GpConfig } from '../public-api';
+import { GpConfig } from 'gp-components/config';
 
 @Directive({
   standalone: true,
   providers: [],
 })
-export class BaseComponent<T = any> {
+export class BaseComponent {
   /**
    * The host element reference.
    */

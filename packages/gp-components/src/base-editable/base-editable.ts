@@ -1,11 +1,11 @@
 import { booleanAttribute, Component, computed, Directive, input, signal } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
-import { BaseComponent } from '../public-api';
+import { BaseComponent } from 'gp-components/base';
 
 @Directive({
   standalone: true,
 })
-export class BaseEditable<T = any> extends BaseComponent<T> implements ControlValueAccessor {
+export class BaseEditable extends BaseComponent implements ControlValueAccessor {
   /**
    *  Whether the input is required.
    */

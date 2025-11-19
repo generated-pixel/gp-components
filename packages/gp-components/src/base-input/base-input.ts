@@ -1,10 +1,10 @@
-import { Directive, Input, input, numberAttribute } from '@angular/core';
-import { BaseEditable } from '../base-editable/base-editable';
+import { Directive, input, numberAttribute } from '@angular/core';
+import { BaseEditable } from 'gp-components/base-editable';
 
 @Directive({
   standalone: true,
 })
-export class BaseInput<T = any> extends BaseEditable<T> {
+export class BaseInput extends BaseEditable {
   /**
    * The input element ID.
    */
@@ -23,5 +23,5 @@ export class BaseInput<T = any> extends BaseEditable<T> {
   /**
    * The input's tabindex.
    */
-  @Input({ transform: numberAttribute }) tabIndex?: number;
+  readonly tabIndex = input<number, unknown>(undefined, { transform: numberAttribute });
 }

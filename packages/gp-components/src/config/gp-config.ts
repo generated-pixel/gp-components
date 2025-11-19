@@ -1,7 +1,7 @@
 import { Subject } from 'rxjs';
-import { Translations } from '../public-api';
 import { Injectable } from '@angular/core';
 import { GpConfigType } from './gp-config.type';
+import { Translations } from 'gp-components/api';
 
 @Injectable({ providedIn: 'root' })
 export class GpConfig {

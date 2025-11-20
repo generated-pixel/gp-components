@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MenuComponent } from './menu';
+import { EyeIcon } from './eye-icon';
 
-describe('MenuComponent', () => {
-  let component: MenuComponent;
-  let fixture: ComponentFixture<MenuComponent>;
+describe('EyeIcon', () => {
+  let component: EyeIcon;
+  let fixture: ComponentFixture<EyeIcon>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MenuComponent],
-    }).compileComponents();
+      imports: [EyeIcon]
+    })
+    .compileComponents();
 
-    fixture = TestBed.createComponent(MenuComponent);
+    fixture = TestBed.createComponent(EyeIcon);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

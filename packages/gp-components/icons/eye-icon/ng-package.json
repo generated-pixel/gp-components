@@ -1,7 +1,6 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/gp-components",
   "lib": {
-    "entryFile": "src/public-api.ts"
+    "entryFile": "../../src/icons/eye-icon/public-api.ts"
   }
 }

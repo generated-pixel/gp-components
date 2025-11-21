@@ -29,7 +29,7 @@ export class StyleInjector {
       : head.appendChild(styleElement);
 
     styleElement.setAttribute('type', 'text/css');
-    styleElement.dataset.gpStyle = name;
+    styleElement.dataset['gpStyle'] = name;
     styleElement.textContent = style;
   }
 }

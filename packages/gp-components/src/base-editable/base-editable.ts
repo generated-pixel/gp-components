@@ -1,4 +1,4 @@
-import { booleanAttribute, Component, computed, Directive, input, signal } from '@angular/core';
+import { booleanAttribute, computed, Directive, input, signal } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { BaseComponent } from 'gp-components/base';
 

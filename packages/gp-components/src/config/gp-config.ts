@@ -14,7 +14,7 @@ export class GpConfig {
     passwordPrompt: 'Enter a password',
   };
 
-  private translationSource = new Subject<any>();
+  private readonly translationSource = new Subject<any>();
   public translationObservable = this.translationSource.asObservable();
 
   getTranslation(key: string): any {

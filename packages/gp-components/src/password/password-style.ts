@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BaseStyle } from '../base/base-style';
-import { gpStyle as passwordStyle } from '../styles/password';
+import { gpPasswordStyle } from 'gp-components/styles';
 
 const style = `
-  ${passwordStyle}
-
+  ${gpPasswordStyle}
 
 .toggle-password-holder {
   display: flex;

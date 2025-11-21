@@ -1,8 +1,9 @@
 import { inject, Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 @Injectable({ providedIn: 'root' })
 export class StyleInjector {
-  document: Document = inject(Document);
+  document: Document = inject(DOCUMENT);
 
   injectStyle(style: string, options: any = {}): void {
     if (!this.document) {

@@ -1,6 +1,7 @@
 import {
   ChangeDetectorRef,
   Directive,
+  DOCUMENT,
   ElementRef,
   inject,
   Injector,
@@ -17,6 +18,8 @@ import { BaseStyle } from './base-style';
   providers: [],
 })
 export class BaseComponent implements NgEvents {
+  public document: Document = inject(DOCUMENT);
+
   /**
    * The host element reference.
    */
@@ -56,6 +59,24 @@ export class BaseComponent implements NgEvents {
     return this.constructor?.name?.replace(/^_/, '') || 'BaseComponent';
   }
 
+  private get $hostName() {
+    return this['hostName'];
+  }
+
+  get $style() {
+    return {
+      theme: undefined,
+      css: undefined,
+      classes: undefined,
+      inlineStyles: undefined,
+      ...this._getHostInstance(this)?.$style,
+      ...this['_componentStyle'],
+    };
+  }
+
+  get $styleOptions() {
+    return { nonce: this.config?.csp().nonce };
+  }
   /*
     should add some methods here to do ngOnInit, ngOnChanges, ngOnDestroy, ngAfterViewInit, etc.
     need to figure out how we can code it up so we don't have to use super.ngOnInit() in the child components
@@ -128,6 +149,25 @@ export class BaseComponent implements NgEvents {
   }
 
   private _loadCssAndStyles(): void {
-    this.baseStyle.load(this.baseStyle.style, { componentName: this.$name });
+    const { css, style } = this.$style?.getComponentTheme?.() || {};
+
+    this.baseStyle.load(this.baseStyle.style, { name: this.$name });
+    this.baseStyle.load(this.$style?.style, { name: this.$style.name });
+  }
+
+  private _getHostInstance(instance: any): any {
+    if (!instance) {
+      return undefined;
+    }
+
+    if (!this.$hostName) {
+      return instance.$parentInstance;
+    }
+
+    if (this.$name === this.$hostName) {
+      return instance;
+    }
+
+    return this._getHostInstance(instance.$parentInstance);
   }
 }

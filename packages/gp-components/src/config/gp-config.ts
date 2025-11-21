@@ -1,5 +1,5 @@
 import { Subject } from 'rxjs';
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { GpConfigType } from './gp-config.type';
 import { Translations } from 'gp-components/api';
 
@@ -13,6 +13,8 @@ export class GpConfig {
     strong: 'Strong',
     passwordPrompt: 'Enter a password',
   };
+
+  csp = signal<{ nonce: string | undefined }>({ nonce: undefined });
 
   private readonly translationSource = new Subject<any>();
   public translationObservable = this.translationSource.asObservable();

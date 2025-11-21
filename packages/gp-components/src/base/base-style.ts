@@ -10,7 +10,7 @@ const style = `
 export class BaseStyle {
   name = 'base';
 
-  style: any = undefined;
+  style: any = style;
 
   styleInjector: StyleInjector = inject(StyleInjector);
 

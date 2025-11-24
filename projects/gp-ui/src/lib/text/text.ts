@@ -2,12 +2,12 @@ import { Component, input, NgModule } from '@angular/core';
 import { BaseInput } from '../base-input/base-input';
 
 @Component({
-  selector: 'gp-password',
+  selector: 'gp-text',
   imports: [],
-  templateUrl: './password.html',
-  styleUrl: './password.css',
+  templateUrl: './text.html',
+  styleUrl: './text.css',
 })
-export class PasswordComponent extends BaseInput {
+export class TextComponent extends BaseInput {
   placeholder = input<string | undefined>();
   togglePassword = input<boolean | undefined>();
 
@@ -19,7 +19,7 @@ export class PasswordComponent extends BaseInput {
 }
 
 @NgModule({
-  imports: [PasswordComponent],
-  exports: [PasswordComponent],
+  imports: [TextComponent],
+  exports: [TextComponent],
 })
-export class PasswordModule {}
+export class TextModule {}

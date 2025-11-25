@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GpUi } from './gp-ui';
+import { Panel } from './panel';
 
-describe('GpUi', () => {
-  let component: GpUi;
-  let fixture: ComponentFixture<GpUi>;
+describe('Panel', () => {
+  let component: Panel;
+  let fixture: ComponentFixture<Panel>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GpUi]
+      imports: [Panel]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(GpUi);
+    fixture = TestBed.createComponent(Panel);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

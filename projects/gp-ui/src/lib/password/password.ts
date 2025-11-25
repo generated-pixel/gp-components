@@ -11,8 +11,10 @@ import { EyeIcon, EyeSlashIcon } from '../../public-api';
 export class PasswordComponent extends BaseInput {
   placeholder = input<string | undefined>();
   togglePassword = input<boolean | undefined>();
+  showClear = input<boolean | undefined>();
 
   passwordVisible: boolean = false;
+  clearVisible: boolean = false;
 
   onPasswordVisibleChange() {
     this.passwordVisible = !this.passwordVisible;

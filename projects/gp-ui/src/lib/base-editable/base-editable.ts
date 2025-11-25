@@ -30,7 +30,7 @@ export class BaseEditable extends Base {
    */
   name = input<string | undefined>();
 
-  value: string | number | boolean | undefined | Array<any> | null = undefined;
+  value: string | number | boolean | null = undefined;
 
   _disabled = signal<boolean>(false);
   $disabled = computed(() => this.disabled() || this._disabled());
@@ -72,6 +72,6 @@ export class BaseEditable extends Base {
    */
   setDisabledState?(isDisabled: boolean): void {
     this.updateDisabledState(isDisabled);
-    this.cd.markForCheck();
+    this.changeDetector.markForCheck();
   }
 }

@@ -20,7 +20,7 @@ export class Base {
   /**
    * The host element reference.
    */
-  public el: ElementRef = inject(ElementRef);
+  public elementRef: ElementRef = inject(ElementRef);
 
   /**
    * The injector instance.
@@ -30,7 +30,7 @@ export class Base {
   /**
    * The change detector reference.
    */
-  public readonly cd: ChangeDetectorRef = inject(ChangeDetectorRef);
+  public readonly changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   /**
    * The renderer instance.

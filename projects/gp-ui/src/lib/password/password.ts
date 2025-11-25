@@ -1,9 +1,10 @@
 import { Component, input, NgModule } from '@angular/core';
 import { BaseInput } from '../base-input/base-input';
+import { EyeIcon, EyeSlashIcon } from '../../public-api';
 
 @Component({
   selector: 'gp-password',
-  imports: [],
+  imports: [EyeIcon, EyeSlashIcon],
   templateUrl: './password.html',
   styleUrl: './password.css',
 })

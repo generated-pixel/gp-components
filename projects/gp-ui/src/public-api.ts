@@ -19,7 +19,7 @@ export * from './lib/icons/icon.module';
  * Input Components
  */
 export * from './lib/password/password';
-export * from './lib/text/text';
+export * from './lib/input-text/input-text';
 
 /**
  * Panel Component

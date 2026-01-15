@@ -7,6 +7,7 @@ const { parseTemplate, BindingType } = require('@angular/compiler');
 
 const DEFAULT_SRC_DIR = path.resolve(process.cwd(), 'projects/gp-ui/src/lib');
 const DEFAULT_OUTPUT = path.resolve(process.cwd(), 'projects/gp-ui/css/generated-classes.css');
+const CLASS_PREFIX = 'gp-';
 const CLASS_METHODS = new Set(['addClass', 'removeClass', 'toggleClass']);
 const CLASS_LIST_METHODS = new Set(['add', 'remove', 'toggle']);
 const SET_ATTRIBUTE_METHODS = new Set(['setAttribute', 'setAttributeNS']);
@@ -1061,6 +1062,9 @@ function generateCss(classNames) {
 
 function translateClassName(rawName) {
   const parts = dissectClassName(rawName);
+  if (CLASS_PREFIX && !parts.prefixed) {
+    return null;
+  }
   const translation = translateBaseUtility(parts.base, {
     negative: parts.negative,
     important: parts.important,
@@ -1091,6 +1095,7 @@ function dissectClassName(raw) {
   let base = baseToken;
   let important = false;
   let negative = false;
+  let prefixed = false;
 
   if (base.startsWith('!')) {
     important = true;
@@ -1102,7 +1107,12 @@ function dissectClassName(raw) {
     base = base.slice(1);
   }
 
-  return { base, variants, important, negative };
+  if (CLASS_PREFIX && base.startsWith(CLASS_PREFIX)) {
+    base = base.slice(CLASS_PREFIX.length);
+    prefixed = true;
+  }
+
+  return { base, variants, important, negative, prefixed };
 }
 
 const RESPONSIVE_VARIANT_ORDER = {

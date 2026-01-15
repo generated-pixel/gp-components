@@ -9,6 +9,7 @@ import { TranslationKeys } from '../api';
   templateUrl: './password.html',
   styleUrl: './password.css',
   standalone: true,
+  host: { class: 'gp-password-container gp-flex gp-w-fit gp-max-w-fit gp-border gp-rounded-md' },
 })
 export class PasswordComponent extends BaseInput {
   placeholder = input<string | undefined>();

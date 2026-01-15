@@ -1,29 +1,33 @@
 /* Auto-generated utility bundle */
 /* Do not edit manually */
 
-.border {
+.gp-border {
   border-width: 1px;
 }
 
-.cursor-pointer {
+.gp-cursor-pointer {
   cursor: pointer;
 }
 
-.flex {
+.gp-flex {
   display: flex;
 }
 
-.ml-1 {
+.gp-max-w-fit {
+  max-width: fit-content;
+}
+
+.gp-ml-1 {
   margin-left: 0.25rem;
 }
 
-.rounded-md {
+.gp-rounded-md {
   border-radius: 0.375rem;
 }
 
-.w-fit {
+.gp-w-fit {
   width: fit-content;
 }
 
 /* Unsupported class tokens */
-/* clickable-icon nax-w-fit password-container toggle-password-holder */
+/* gp-clickable-icon gp-password-container gp-toggle-password-holder */

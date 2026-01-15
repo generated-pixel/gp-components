@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BaseIcon } from '../base/base';
+import { BaseIcon } from '../base-icon/base-icon';
 
 @Component({
   selector: '[data-gp-icon="circle-x"]',

@@ -30,3 +30,8 @@ export * from './lib/panel/panel';
  * BlockUI Component
  */
 export * from './lib/blockui/blockui';
+
+/**
+ * UI Components
+ */
+export * from './lib/tooltip/tooltip';

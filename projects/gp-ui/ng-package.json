@@ -3,5 +3,12 @@
   "dest": "../../dist/gp-ui",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "assets": [
+    {
+      "input": "css",
+      "glob": "**/*.css",
+      "output": "css"
+    }
+  ]
 }

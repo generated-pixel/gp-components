@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './blockui.html',
   styleUrl: './blockui.css',
+  standalone: true,
 })
-export class Blockui {
-
-}
+export class Blockui {}

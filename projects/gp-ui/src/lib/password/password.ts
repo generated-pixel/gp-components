@@ -1,12 +1,14 @@
 import { Component, input, NgModule } from '@angular/core';
 import { BaseInput } from '../base-input/base-input';
 import { EyeIcon, EyeSlashIcon } from '../../public-api';
+import { TranslationKeys } from '../api';
 
 @Component({
   selector: 'gp-password',
   imports: [EyeIcon, EyeSlashIcon],
   templateUrl: './password.html',
   styleUrl: './password.css',
+  standalone: true,
 })
 export class PasswordComponent extends BaseInput {
   placeholder = input<string | undefined>();
@@ -15,6 +17,13 @@ export class PasswordComponent extends BaseInput {
 
   passwordVisible: boolean = false;
   clearVisible: boolean = false;
+  showPasswordText: string = undefined;
+  hidePasswordText: string = undefined;
+
+  onInit(): void {
+    this.showPasswordText = this.config.getTranslation(TranslationKeys.SHOW_PASSWORD);
+    this.hidePasswordText = this.config.getTranslation(TranslationKeys.HIDE_PASSWORD);
+  }
 
   onPasswordVisibleChange() {
     this.passwordVisible = !this.passwordVisible;

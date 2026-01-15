@@ -6,6 +6,7 @@ import { BaseInput } from '../base-input/base-input';
   imports: [],
   templateUrl: './text.html',
   styleUrl: './text.css',
+  standalone: true,
 })
 export class TextComponent extends BaseInput {
   placeholder = input<string | undefined>();

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Input } from './input';
+import { Tooltip } from './tooltip';
 
-describe('Input', () => {
-  let component: Input;
-  let fixture: ComponentFixture<Input>;
+describe('Tooltip', () => {
+  let component: Tooltip;
+  let fixture: ComponentFixture<Tooltip>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Input]
+      imports: [Tooltip]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Input);
+    fixture = TestBed.createComponent(Tooltip);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

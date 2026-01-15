@@ -7,6 +7,7 @@ import { BlockableUI } from '../api/blockable-ui';
   imports: [],
   templateUrl: './panel.html',
   styleUrl: './panel.css',
+  standalone: true,
 })
 export class Panel extends Base implements BlockableUI {
   findBlockableElement(): HTMLElement {

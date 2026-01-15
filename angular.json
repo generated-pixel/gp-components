@@ -48,7 +48,13 @@
                 "input": "projects/demo/public"
               }
             ],
-            "styles": ["projects/demo/src/styles.css"]
+            "styles": [
+              "projects/gp-ui/css/preflight.css",
+              "projects/gp-ui/css/theme.css",
+              "projects/gp-ui/css/utilities.css",
+              "projects/gp-ui/css/generated-classes.css",
+              "projects/demo/src/styles.css"
+            ]
           },
           "configurations": {
             "production": {
@@ -100,7 +106,13 @@
                 "input": "projects/demo/public"
               }
             ],
-            "styles": ["projects/demo/src/styles.css"]
+            "styles": [
+              "projects/gp-ui/css/preflight.css",
+              "projects/gp-ui/css/theme.css",
+              "projects/gp-ui/css/utilities.css",
+              "projects/gp-ui/css/generated-classes.css",
+              "projects/demo/src/styles.css"
+            ]
           }
         }
       }

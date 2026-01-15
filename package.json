@@ -12,7 +12,9 @@
     "test": "ng test",
     "prebuild": "npm run extract:classes",
     "extract:watch": "node tools/watch-css-classes.js",
-    "extract:classes": "node tools/extract-css-classes.js"
+    "extract:classes": "node tools/extract-css-classes.js",
+    "lib:build": "ng build gp-ui --configuration=production && node tools/bundle-css.js",
+    "lib:watch": "ng build gp-ui --watch --configuration=development"
   },
   "prettier": {
     "printWidth": 100,

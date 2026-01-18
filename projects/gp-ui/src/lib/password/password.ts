@@ -1,33 +1,36 @@
-import { Component, input, NgModule } from '@angular/core';
-import { BaseInput } from '../base-input/base-input';
-import { EyeIcon, EyeSlashIcon } from '../../public-api';
-import { TranslationKeys } from '../api';
+import { Component, inject, input, NgModule } from '@angular/core'
+import { BaseInput } from '../base-input/base-input'
+import { EyeIcon, EyeSlashIcon } from '../../public-api'
+import { TranslationKeys } from '../api'
+import { PASSWORD_STYLE, PASSWORD_STYLE_PROVIDER } from './style/password.style'
 
 @Component({
   selector: 'gp-password',
   imports: [EyeIcon, EyeSlashIcon],
   templateUrl: './password.html',
-  styleUrl: './password.css',
   standalone: true,
-  host: { class: 'gp-password-container gp-flex gp-w-fit gp-max-w-fit gp-border gp-rounded-md' },
+  providers: [PASSWORD_STYLE_PROVIDER],
 })
 export class PasswordComponent extends BaseInput {
-  placeholder = input<string | undefined>();
-  togglePassword = input<boolean | undefined>();
-  showClear = input<boolean | undefined>();
+  private readonly style = inject(PASSWORD_STYLE)
 
-  passwordVisible: boolean = false;
-  clearVisible: boolean = false;
-  showPasswordText: string = undefined;
-  hidePasswordText: string = undefined;
+  placeholder = input<string | undefined>()
+  togglePassword = input<boolean | undefined>()
+  showClear = input<boolean | undefined>()
+
+  passwordVisible: boolean = false
+  clearVisible: boolean = false
+  showPasswordText: string = undefined
+  hidePasswordText: string = undefined
 
   onInit(): void {
-    this.showPasswordText = this.config.getTranslation(TranslationKeys.SHOW_PASSWORD);
-    this.hidePasswordText = this.config.getTranslation(TranslationKeys.HIDE_PASSWORD);
+    this.attachStyle(this.style)
+    this.showPasswordText = this.config.getTranslation(TranslationKeys.SHOW_PASSWORD)
+    this.hidePasswordText = this.config.getTranslation(TranslationKeys.HIDE_PASSWORD)
   }
 
   onPasswordVisibleChange() {
-    this.passwordVisible = !this.passwordVisible;
+    this.passwordVisible = !this.passwordVisible
   }
 }
 

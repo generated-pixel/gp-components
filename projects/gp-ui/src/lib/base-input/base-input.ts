@@ -23,5 +23,7 @@ export class BaseInput extends BaseEditable {
   /**
    * The input's tabindex.
    */
-  readonly tabIndex = input<number, unknown>(undefined, { transform: numberAttribute });
+  readonly tabIndex = input<number, unknown>(undefined, {
+    transform: numberAttribute,
+  });
 }

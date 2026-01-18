@@ -8,9 +8,8 @@ describe('CircleXIcon', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CircleXIcon]
-    })
-    .compileComponents();
+      imports: [CircleXIcon],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CircleXIcon);
     component = fixture.componentInstance;

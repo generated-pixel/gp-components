@@ -8,9 +8,8 @@ describe('EyeSlashIcon', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EyeSlashIcon]
-    })
-    .compileComponents();
+      imports: [EyeSlashIcon],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(EyeSlashIcon);
     component = fixture.componentInstance;

@@ -16,18 +16,6 @@
     "lib:build": "ng build gp-ui --configuration=production && node tools/bundle-css.js",
     "lib:watch": "ng build gp-ui --watch --configuration=development"
   },
-  "prettier": {
-    "printWidth": 100,
-    "singleQuote": true,
-    "overrides": [
-      {
-        "files": "*.html",
-        "options": {
-          "parser": "angular"
-        }
-      }
-    ]
-  },
   "private": true,
   "dependencies": {
     "@angular/common": "^21.0.6",
@@ -45,6 +33,8 @@
     "@angular/cli": "^21.0.4",
     "@angular/compiler-cli": "^21.0.6",
     "@types/jasmine": "^5.1.15",
+    "angular-eslint": "19.0.2",
+    "eslint": "^9.13.0",
     "jasmine-core": "~5.9.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
@@ -53,6 +43,7 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "ng-packagr": "^21.0.6",
     "npm-run-all": "^4.1.5",
-    "typescript": "~5.9.2"
+    "typescript": "~5.9.2",
+    "typescript-eslint": "8.10.0"
   }
 }

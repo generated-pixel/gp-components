@@ -8,9 +8,8 @@ describe('Blockui', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Blockui]
-    })
-    .compileComponents();
+      imports: [Blockui],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(Blockui);
     component = fixture.componentInstance;

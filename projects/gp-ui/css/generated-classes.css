@@ -1,33 +1,13 @@
 /* Auto-generated utility bundle */
 /* Do not edit manually */
 
-.gp-border {
-  border-width: 1px;
-}
-
 .gp-cursor-pointer {
   cursor: pointer;
-}
-
-.gp-flex {
-  display: flex;
-}
-
-.gp-max-w-fit {
-  max-width: fit-content;
 }
 
 .gp-ml-1 {
   margin-left: 0.25rem;
 }
 
-.gp-rounded-md {
-  border-radius: 0.375rem;
-}
-
-.gp-w-fit {
-  width: fit-content;
-}
-
 /* Unsupported class tokens */
-/* gp-clickable-icon gp-password-container gp-toggle-password-holder */
+/* gp-blockui-root gp-clickable-icon gp-icon-circle-x gp-icon-eye gp-icon-eye-slash gp-icon-root gp-input-text-root gp-label-root gp-panel-root gp-password-root gp-toggle-password-holder gp-tooltip-root */

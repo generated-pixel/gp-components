@@ -1,5 +1,7 @@
-import { Translations } from '../api/translations';
+import { Translations } from '../api/translations'
+import type { ComponentThemeOverrides } from '../base/style/base.style'
 
 export type GpConfigType = {
-  translations?: { [lang: string]: Translations };
-};
+  translations?: Translations
+  theme?: ComponentThemeOverrides
+}

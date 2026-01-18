@@ -1,12 +1,15 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const path = require('path');
-const { spawn } = require('child_process');
+const fs = require("fs");
+const path = require("path");
+const { spawn } = require("child_process");
 
-const SRC_DIR = path.resolve(process.cwd(), 'projects/gp-ui/src');
-const OUTPUT_FILE = path.resolve(process.cwd(), 'projects/gp-ui/css/generated-classes.css');
-const WATCH_EXTENSIONS = new Set(['.html', '.ts']);
+const SRC_DIR = path.resolve(process.cwd(), "projects/gp-ui/src");
+const OUTPUT_FILE = path.resolve(
+  process.cwd(),
+  "projects/gp-ui/css/generated-classes.css",
+);
+const WATCH_EXTENSIONS = new Set([".html", ".ts"]);
 const DEBOUNCE_MS = 100;
 
 let timer = null;
@@ -23,10 +26,10 @@ function runExtractor() {
   running = true;
   pending = false;
 
-  const scriptPath = path.resolve(__dirname, 'extract-css-classes.js');
-  currentChild = spawn(process.execPath, [scriptPath], { stdio: 'inherit' });
+  const scriptPath = path.resolve(__dirname, "extract-css-classes.js");
+  currentChild = spawn(process.execPath, [scriptPath], { stdio: "inherit" });
 
-  currentChild.on('exit', () => {
+  currentChild.on("exit", () => {
     running = false;
     currentChild = null;
     if (pending) {
@@ -34,7 +37,7 @@ function runExtractor() {
     }
   });
 
-  currentChild.on('error', (error) => {
+  currentChild.on("error", (error) => {
     running = false;
     currentChild = null;
     console.error(`Extractor failed: ${error.message}`);
@@ -89,7 +92,7 @@ function watchDirectory(dirPath) {
       const fullPath = path.join(dirPath, entry);
       try {
         const stats = fs.statSync(fullPath);
-        if (stats.isDirectory() && eventType === 'rename') {
+        if (stats.isDirectory() && eventType === "rename") {
           watchDirectory(fullPath);
         }
       } catch (error) {
@@ -102,7 +105,7 @@ function watchDirectory(dirPath) {
     return;
   }
 
-  watcher.on('error', (error) => {
+  watcher.on("error", (error) => {
     console.warn(`Watcher error in ${dirPath}: ${error.message}`);
   });
 
@@ -138,14 +141,16 @@ function main() {
   }
 
   watchDirectory(SRC_DIR);
-  console.log(`Watching ${path.relative(process.cwd(), SRC_DIR)} for class changes...`);
+  console.log(
+    `Watching ${path.relative(process.cwd(), SRC_DIR)} for class changes...`,
+  );
 
   runExtractor();
 
-  process.on('SIGINT', () => {
+  process.on("SIGINT", () => {
     closeWatchers();
     if (currentChild) {
-      currentChild.kill('SIGINT');
+      currentChild.kill("SIGINT");
     }
     process.exit(0);
   });

@@ -8,55 +8,58 @@ import {
   input,
   Renderer2,
   SimpleChanges,
-} from '@angular/core';
-import { GpConfig } from '../config/gp-config';
+} from '@angular/core'
+import { GpConfig } from '../config/gp-config'
+import { BaseStyle, ComponentStyleConfig, ComponentStyleHandle } from './style/base.style'
 
 @Directive({
   standalone: true,
 })
 export class Base {
-  public document: Document = inject(DOCUMENT);
+  public document: Document = inject(DOCUMENT)
 
   /**
    * The host element reference.
    */
-  public elementRef: ElementRef = inject(ElementRef);
+  public elementRef: ElementRef = inject(ElementRef)
 
   /**
    * The injector instance.
    */
-  public readonly injector: Injector = inject(Injector);
+  public readonly injector: Injector = inject(Injector)
 
   /**
    * The change detector reference.
    */
-  public readonly changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
+  public readonly changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef)
 
   /**
    * The renderer instance.
    */
-  public renderer: Renderer2 = inject(Renderer2);
+  public renderer: Renderer2 = inject(Renderer2)
 
   /**
    * The global configuration service.
    */
-  public config: GpConfig = inject(GpConfig);
+  public config: GpConfig = inject(GpConfig)
 
   /**
    * The component Id.
    */
-  public readonly id = input<string | undefined>(undefined);
+  public readonly id = input<string | undefined>(undefined)
 
   /**
    * The component name.
    */
   get $name() {
-    return this.constructor?.name?.replace(/^_/, '') || 'BaseComponent';
+    return this.constructor?.name?.replace(/^_/, '') || 'BaseComponent'
   }
 
   private get $hostName() {
-    return this['hostName'];
+    return this['hostName']
   }
+
+  private readonly styleHandles: ComponentStyleHandle[] = []
 
   /*
     should add some methods here to do ngOnInit, ngOnChanges, ngOnDestroy, ngAfterViewInit, etc.
@@ -97,34 +100,73 @@ export class Base {
   }
 
   ngOnInit(): void {
-    this.onInit();
+    this.onInit()
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.onChanges(changes);
+    this.onChanges(changes)
   }
 
   ngDoCheck(): void {
-    this.onDoCheck();
+    this.onDoCheck()
   }
 
   ngAfterContentInit(): void {
-    this.onAfterContentInit();
+    this.onAfterContentInit()
   }
 
   ngAfterContentChecked(): void {
-    this.onAfterContentChecked();
+    this.onAfterContentChecked()
   }
 
   ngOnDestroy(): void {
-    this.onDestroy();
+    try {
+      this.onDestroy()
+    } finally {
+      this.clearStyleHandles()
+    }
   }
 
   ngAfterViewInit(): void {
-    this.onAfterViewInit();
+    this.onAfterViewInit()
   }
 
   ngAfterViewChecked(): void {
-    this.onAfterViewChecked();
+    this.onAfterViewChecked()
+  }
+
+  protected attachStyle<T extends ComponentStyleConfig>(
+    style: BaseStyle<T>,
+    overrides?: Partial<T>
+  ): ComponentStyleHandle {
+    const handle = style.attach(this.elementRef.nativeElement, this.renderer, overrides)
+
+    this.styleHandles.push(handle)
+    return handle
+  }
+
+  protected detachStyle(handle?: ComponentStyleHandle): void {
+    if (!handle) {
+      return
+    }
+
+    const index = this.styleHandles.indexOf(handle)
+
+    if (index === -1) {
+      return
+    }
+
+    this.styleHandles.splice(index, 1)
+    handle.destroy()
+  }
+
+  private clearStyleHandles(): void {
+    while (this.styleHandles.length) {
+      const handle = this.styleHandles.pop()
+
+      if (handle) {
+        handle.destroy()
+      }
+    }
   }
 }

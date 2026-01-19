@@ -73,6 +73,13 @@ export class ThemeSwitcherStyle extends BaseStyle<ThemeSwitcherTheme> {
           box-shadow: var(--gp-theme-switcher-select-focus-ring);
         }
 
+        @media (max-width: 600px) {
+          gp-theme-switcher.gp-theme-switcher-root .gp-theme-switcher {
+            width: var(--gp-theme-switcher-theme-mobile-width);
+            grid-template-columns: var(--gp-theme-switcher-theme-mobile-template);
+          }
+        }
+
         @media (min-width: 640px) {
           gp-theme-switcher.gp-theme-switcher-root .gp-theme-switcher {
             grid-template-columns: repeat(2, minmax(0, 1fr));

@@ -48,6 +48,14 @@ export class TooltipStyle extends BaseStyle<TooltipTheme> {
           pointer-events: auto;
           transform: translate(-50%, -4px);
         }
+
+        @media (max-width: 600px) {
+          gp-tooltip.gp-tooltip-root .gp-tooltip-content {
+            inset: auto auto var(--gp-tooltip-theme-mobile-vertical-offset) 50%;
+            max-width: var(--gp-tooltip-theme-mobile-max-width);
+            text-align: var(--gp-tooltip-theme-mobile-text-align);
+          }
+        }
       `,
     }
   }

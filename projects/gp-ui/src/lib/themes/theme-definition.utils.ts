@@ -6,7 +6,7 @@ import {
   mergeComponentVars,
   StyleValue,
 } from '../base/style/base.style'
-import { GpComponentThemeDefinition, GpThemeDefinition } from '../interfaces/theme-json.interfaces'
+import { GpComponentThemeDefinition, GpThemeDefinition } from '../interfaces'
 
 type ModeKey = 'light' | 'dark'
 
@@ -16,8 +16,47 @@ type ComponentName = string
 
 export function resolveThemeComponents(definition: GpThemeDefinition): ComponentThemeOverrides {
   const semanticOverrides = mapSemanticToComponentOverrides(definition)
+  const semanticComponentOverrides = extractSemanticComponentOverrides(definition)
   const componentOverrides = convertComponentDefinitions(definition.components)
-  return mergeOverrides(semanticOverrides, componentOverrides)
+  return mergeOverrides(mergeOverrides(semanticOverrides, semanticComponentOverrides), componentOverrides)
+}
+
+function extractSemanticComponentOverrides(definition: GpThemeDefinition): ComponentThemeOverrides {
+  const semantic = (definition.semantic ?? {}) as SemanticRecord
+  const overrides: ComponentThemeOverrides = {}
+
+  const componentMap: Record<string, string> = {
+    panel: 'gp-panel',
+    inputText: 'gp-input-text',
+    password: 'gp-password',
+    tooltip: 'gp-tooltip',
+    blockui: 'gp-blockui',
+  }
+
+  Object.entries(componentMap).forEach(([key, componentName]) => {
+    const componentDef = semantic[key]
+    if (componentDef && typeof componentDef === 'object') {
+      const config: ComponentStyleConfig = {}
+
+      if (componentDef.host) {
+        config.host = { ...componentDef.host }
+      }
+
+      if (componentDef.vars) {
+        config.vars = cloneComponentVars(componentDef.vars as ComponentVarsDefinition)
+      }
+
+      if (componentDef.css) {
+        config.css = componentDef.css
+      }
+
+      if (Object.keys(config).length > 0) {
+        overrides[componentName] = config
+      }
+    }
+  })
+
+  return overrides
 }
 
 function mapSemanticToComponentOverrides(definition: GpThemeDefinition): ComponentThemeOverrides {

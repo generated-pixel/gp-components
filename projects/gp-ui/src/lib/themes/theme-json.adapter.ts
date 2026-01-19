@@ -8,13 +8,25 @@ import {
 import { GP_DEFAULT_THEME } from './default.theme'
 import { GP_DEVELOPER_THEME } from './developer.theme'
 import { GP_PRIDE_THEME } from './pride.theme'
+import { resolveThemeComponents } from './theme-definition.utils'
 import {
   CreateThemeFromJsonOptions,
   GpComponentThemeDefinition,
+  GpResolvedTheme,
+  GpThemeDefinition,
   GpThemeJson,
-} from '../interfaces/theme-json.interfaces'
+  GpThemePrimitiveDefinition,
+  GpThemeRegistryEntry,
+  GpThemeSemanticDefinition,
+} from '../interfaces'
 
-const BUILTIN_THEME_REGISTRY: Record<string, ComponentThemeOverrides> = {
+type ResolvedThemeParts = {
+  components: ComponentThemeOverrides
+  primitives: GpThemePrimitiveDefinition
+  semantic: GpThemeSemanticDefinition
+}
+
+const BUILTIN_THEME_REGISTRY: Record<string, GpThemeRegistryEntry> = {
   default: GP_DEFAULT_THEME,
   developer: GP_DEVELOPER_THEME,
   pride: GP_PRIDE_THEME,
@@ -27,31 +39,30 @@ export function createThemeFromJson(json: GpThemeJson, options?: CreateThemeFrom
 
   const registry = buildRegistry(options?.registry)
 
-  const baseThemes = toArray(json.extends)
+  const baseParts = toArray(json.extends)
     .map(normalizeThemeKey)
     .map((key) => (key ? registry[key] : undefined))
-    .filter(isComponentThemeOverrides)
-  const base = mergeThemeOverrides(...baseThemes)
+    .filter((value): value is ResolvedThemeParts => !!value)
 
-  const components = extractComponentDefinitions(json)
+  const baseResolved = baseParts.reduce<ResolvedThemeParts>(mergeResolvedThemeParts, createEmptyResolvedTheme())
 
-  const overrides: ComponentThemeOverrides = {}
+  const metadata = extractMetadata(json)
+  const primitives = mergePrimitiveDefinitions(baseResolved.primitives, metadata.primitives)
+  const semantic = mergeSemanticDefinitions(baseResolved.semantic, metadata.semantic)
 
-  for (const [key, definition] of Object.entries(components)) {
-    if (!definition) {
-      continue
-    }
+  const overrides = convertComponentDefinitions(extractComponentDefinitions(json))
+  const components = mergeThemeOverrides(baseResolved.components, overrides)
 
-    const componentName = toComponentName(key)
-
-    if (!componentName) {
-      continue
-    }
-
-    overrides[componentName] = mergeComponentStyleConfig(overrides[componentName], normalizeDefinition(definition))
+  const resolvedTheme: GpResolvedTheme = {
+    name: json.name,
+    primitives,
+    semantic,
+    components,
   }
 
-  return mergeThemeOverrides(base, overrides)
+  options?.onResolvedTheme?.(resolvedTheme)
+
+  return components
 }
 
 function extractComponentDefinitions(json: GpThemeJson): Record<string, GpComponentThemeDefinition | null | undefined> {
@@ -62,11 +73,11 @@ function extractComponentDefinitions(json: GpThemeJson): Record<string, GpCompon
   }
 
   for (const [key, value] of Object.entries(json)) {
-    if (['name', 'extends', 'components'].includes(key)) {
+    if (['name', 'extends', 'components', 'primitive', 'primitives', 'semantic', 'sematic'].includes(key)) {
       continue
     }
 
-    if (!value || typeof value !== 'object') {
+    if (!isPlainObject(value)) {
       continue
     }
 
@@ -186,11 +197,11 @@ function mergeComponentStyleConfig(
   incoming: ComponentStyleConfig | undefined
 ): ComponentStyleConfig {
   if (!existing) {
-    return incoming ? { ...incoming } : {}
+    return incoming ? cloneComponentStyleConfig(incoming) : {}
   }
 
   if (!incoming) {
-    return { ...existing }
+    return cloneComponentStyleConfig(existing)
   }
 
   const merged: ComponentStyleConfig = {}
@@ -232,24 +243,26 @@ function toArray<T>(value: T | T[] | null | undefined): T[] {
   return Array.isArray(value) ? value : [value]
 }
 
-function isComponentThemeOverrides(value: unknown): value is ComponentThemeOverrides {
-  return !!value && typeof value === 'object'
-}
-
-function buildRegistry(custom?: Record<string, ComponentThemeOverrides>): Record<string, ComponentThemeOverrides> {
+function buildRegistry(custom?: Record<string, GpThemeRegistryEntry>): Record<string, ResolvedThemeParts> {
   const entries = {
     ...BUILTIN_THEME_REGISTRY,
     ...(custom ?? {}),
   }
 
-  return Object.entries(entries).reduce<Record<string, ComponentThemeOverrides>>((accumulator, [key, value]) => {
+  return Object.entries(entries).reduce<Record<string, ResolvedThemeParts>>((accumulator, [key, value]) => {
     const normalized = normalizeThemeKey(key)
 
     if (!normalized) {
       return accumulator
     }
 
-    accumulator[normalized] = value
+    const resolved = resolveRegistryEntry(value)
+
+    if (!resolved) {
+      return accumulator
+    }
+
+    accumulator[normalized] = resolved
     return accumulator
   }, {})
 }
@@ -271,4 +284,244 @@ function normalizeThemeKey(key: string | null | undefined): string | undefined {
     : withoutPrefix
 
   return withoutSuffix
+}
+
+function resolveRegistryEntry(entry: GpThemeRegistryEntry | undefined): ResolvedThemeParts | undefined {
+  if (!entry) {
+    return undefined
+  }
+
+  if (isLikelyThemeDefinition(entry)) {
+    const metadata = extractMetadata(entry)
+    return {
+      components: resolveThemeComponents(entry as GpThemeDefinition),
+      primitives: metadata.primitives,
+      semantic: metadata.semantic,
+    }
+  }
+
+  if (isComponentThemeOverrides(entry)) {
+    return {
+      components: cloneComponentThemeOverrides(entry),
+      primitives: {},
+      semantic: {},
+    }
+  }
+
+  return undefined
+}
+
+function mergeResolvedThemeParts(base: ResolvedThemeParts, incoming: ResolvedThemeParts): ResolvedThemeParts {
+  return {
+    components: mergeThemeOverrides(base.components, incoming.components),
+    primitives: mergePrimitiveDefinitions(base.primitives, incoming.primitives),
+    semantic: mergeSemanticDefinitions(base.semantic, incoming.semantic),
+  }
+}
+
+function createEmptyResolvedTheme(): ResolvedThemeParts {
+  return {
+    components: {},
+    primitives: {},
+    semantic: {},
+  }
+}
+
+function extractMetadata(
+  source:
+    | {
+        primitive?: GpThemePrimitiveDefinition | null
+        primitives?: GpThemePrimitiveDefinition | null
+        semantic?: GpThemeSemanticDefinition | null
+        sematic?: GpThemeSemanticDefinition | null
+      }
+    | null
+    | undefined
+): { primitives: GpThemePrimitiveDefinition; semantic: GpThemeSemanticDefinition } {
+  const primitivesSource = source?.primitives ?? source?.primitive ?? null
+  const semanticSource = source?.semantic ?? source?.sematic ?? null
+
+  return {
+    primitives: clonePrimitiveDefinition(primitivesSource),
+    semantic: cloneSemanticDefinition(semanticSource),
+  }
+}
+
+function mergePrimitiveDefinitions(
+  base?: GpThemePrimitiveDefinition | null,
+  incoming?: GpThemePrimitiveDefinition | null
+): GpThemePrimitiveDefinition {
+  const result = clonePrimitiveDefinition(base)
+
+  if (!incoming) {
+    return result
+  }
+
+  Object.entries(incoming).forEach(([key, value]) => {
+    const existing = result[key]
+
+    if (isPlainObject(existing) && isPlainObject(value)) {
+      result[key] = deepMergeObjects(
+        existing as Record<string, unknown>,
+        value as Record<string, unknown>
+      ) as GpThemePrimitiveDefinition[string]
+    } else {
+      result[key] = clonePrimitiveValue(value)
+    }
+  })
+
+  return result
+}
+
+function mergeSemanticDefinitions(
+  base?: GpThemeSemanticDefinition | null,
+  incoming?: GpThemeSemanticDefinition | null
+): GpThemeSemanticDefinition {
+  const result = cloneSemanticDefinition(base)
+
+  if (!incoming) {
+    return result
+  }
+
+  return deepMergeObjects(result, incoming)
+}
+
+function deepMergeObjects<T extends Record<string, unknown>>(base: T, incoming: Record<string, unknown>): T {
+  const result: Record<string, unknown> = { ...base }
+
+  Object.entries(incoming).forEach(([key, value]) => {
+    const existing = result[key]
+
+    if (isPlainObject(existing) && isPlainObject(value)) {
+      result[key] = deepMergeObjects(existing as Record<string, unknown>, value as Record<string, unknown>)
+      return
+    }
+
+    if (Array.isArray(value)) {
+      result[key] = [...value]
+      return
+    }
+
+    if (isPlainObject(value)) {
+      result[key] = deepMergeObjects({}, value as Record<string, unknown>)
+      return
+    }
+
+    result[key] = value
+  })
+
+  return result as T
+}
+
+function clonePrimitiveDefinition(definition?: GpThemePrimitiveDefinition | null): GpThemePrimitiveDefinition {
+  if (!definition) {
+    return {}
+  }
+
+  const result: GpThemePrimitiveDefinition = {}
+
+  Object.entries(definition).forEach(([key, value]) => {
+    result[key] = clonePrimitiveValue(value)
+  })
+
+  return result
+}
+
+function clonePrimitiveValue(value: GpThemePrimitiveDefinition[string]): GpThemePrimitiveDefinition[string] {
+  if (isPlainObject(value)) {
+    return deepMergeObjects({}, value as Record<string, unknown>) as GpThemePrimitiveDefinition[string]
+  }
+
+  if (Array.isArray(value)) {
+    return [...value] as unknown as GpThemePrimitiveDefinition[string]
+  }
+
+  return value
+}
+
+function cloneSemanticDefinition(definition?: GpThemeSemanticDefinition | null): GpThemeSemanticDefinition {
+  if (!definition) {
+    return {}
+  }
+
+  return deepMergeObjects({}, definition)
+}
+
+function convertComponentDefinitions(
+  components: Record<string, GpComponentThemeDefinition | null | undefined>
+): ComponentThemeOverrides {
+  return Object.entries(components).reduce<ComponentThemeOverrides>((accumulator, [componentName, definition]) => {
+    if (!definition) {
+      return accumulator
+    }
+
+    const normalizedName = toComponentName(componentName)
+
+    if (!normalizedName) {
+      return accumulator
+    }
+
+    accumulator[normalizedName] = mergeComponentStyleConfig(
+      accumulator[normalizedName],
+      normalizeDefinition(definition)
+    )
+
+    return accumulator
+  }, {})
+}
+
+function cloneComponentThemeOverrides(overrides: ComponentThemeOverrides): ComponentThemeOverrides {
+  return Object.entries(overrides).reduce<ComponentThemeOverrides>((accumulator, [name, config]) => {
+    accumulator[name] = cloneComponentStyleConfig(config)
+    return accumulator
+  }, {})
+}
+
+function cloneComponentStyleConfig(config: ComponentStyleConfig): ComponentStyleConfig {
+  return {
+    host: config.host ? { ...config.host } : undefined,
+    vars: config.vars ? cloneComponentVars(config.vars) : undefined,
+    classes: config.classes ? [...config.classes] : undefined,
+    css: config.css,
+  }
+}
+
+function isComponentThemeOverrides(value: unknown): value is ComponentThemeOverrides {
+  if (!isPlainObject(value)) {
+    return false
+  }
+
+  return Object.values(value).every((entry) => isComponentStyleConfig(entry))
+}
+
+function isComponentStyleConfig(value: unknown): value is ComponentStyleConfig {
+  if (!isPlainObject(value)) {
+    return false
+  }
+
+  const allowedKeys = new Set(['host', 'vars', 'classes', 'css'])
+
+  return Object.keys(value as Record<string, unknown>).every((key) => allowedKeys.has(key))
+}
+
+function isLikelyThemeDefinition(value: unknown): value is GpThemeDefinition {
+  if (!isPlainObject(value)) {
+    return false
+  }
+
+  const candidate = value as Record<string, unknown>
+
+  return (
+    'components' in candidate ||
+    'primitive' in candidate ||
+    'primitives' in candidate ||
+    'semantic' in candidate ||
+    'sematic' in candidate ||
+    'extends' in candidate ||
+    'name' in candidate
+  )
+}
+
+function isPlainObject(value: unknown): value is Record<string, unknown> {
+  return !!value && typeof value === 'object' && !Array.isArray(value)
 }

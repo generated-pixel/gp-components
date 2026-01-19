@@ -39,6 +39,14 @@ export class PasswordStyle extends BaseStyle<PasswordTheme> {
           box-shadow: var(--gp-password-focus-ring);
           border-color: var(--gp-password-focus-border-color);
         }
+
+        @media (max-width: 600px) {
+          gp-password.gp-password-root {
+            width: var(--gp-password-theme-mobile-width);
+            --gp-password-theme-padding: var(--gp-password-theme-mobile-padding);
+            --gp-password-theme-gap: var(--gp-password-theme-mobile-gap);
+          }
+        }
       `,
     }
   }

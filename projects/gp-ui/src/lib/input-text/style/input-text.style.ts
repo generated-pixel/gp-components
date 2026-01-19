@@ -55,6 +55,14 @@ export class InputTextStyle extends BaseStyle<InputTextTheme> {
         gp-input-text.gp-input-text-root input::placeholder {
           color: var(--gp-input-text-placeholder-color);
         }
+
+        @media (max-width: 600px) {
+          gp-input-text.gp-input-text-root {
+            width: var(--gp-input-text-theme-mobile-width);
+            --gp-input-text-theme-padding: var(--gp-input-text-theme-mobile-padding);
+            --gp-input-text-theme-gap: var(--gp-input-text-theme-mobile-gap);
+          }
+        }
       `,
     }
   }

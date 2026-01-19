@@ -30,6 +30,14 @@ export class PanelStyle extends BaseStyle<PanelTheme> {
         padding: 'var(--gp-panel-theme-padding, 1.5rem)',
         shadow: 'var(--gp-panel-theme-shadow, 0 1px 2px rgba(15, 23, 42, 0.08))',
       },
+      css: `
+        @media (max-width: 600px) {
+          gp-panel.gp-panel-root {
+            width: var(--gp-panel-theme-mobile-width);
+            --gp-panel-theme-padding: var(--gp-panel-theme-mobile-padding);
+          }
+        }
+      `,
     }
   }
 }

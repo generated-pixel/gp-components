@@ -7,7 +7,7 @@
  */
 export * from './lib/config/gp-config'
 export * from './lib/themes'
-export * from './lib/interfaces/theme-json.interfaces'
+export * from './lib/interfaces'
 
 /**
  * Styles

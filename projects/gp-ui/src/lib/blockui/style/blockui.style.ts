@@ -18,9 +18,9 @@ export class BlockuiStyle extends BaseStyle<BlockuiTheme> {
         'min-height': '3rem',
       },
       vars: {
-        overlayBackground: 'rgba(17, 24, 39, 0.35)',
-        overlayBlur: '4px',
-        overlayTransition: 'opacity 0.2s ease',
+        overlayBackground: 'var(--gp-blockui-theme-overlay-background, rgba(17, 24, 39, 0.35))',
+        overlayBlur: 'var(--gp-blockui-theme-overlay-blur, 4px)',
+        overlayTransition: 'var(--gp-blockui-theme-overlay-transition, opacity 0.2s ease)',
       },
       css: `
         gp-blockui.gp-blockui-root::after {

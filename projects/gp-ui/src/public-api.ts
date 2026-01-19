@@ -6,6 +6,8 @@
  * Configuration
  */
 export * from './lib/config/gp-config'
+export * from './lib/themes'
+export * from './lib/interfaces/theme-json.interfaces'
 
 /**
  * Styles
@@ -50,3 +52,5 @@ export * from './lib/blockui/blockui'
  * UI Components
  */
 export * from './lib/tooltip/tooltip'
+export * from './lib/theme-switcher/theme-switcher'
+export * from './lib/theme-switcher/style/theme-switcher.style'

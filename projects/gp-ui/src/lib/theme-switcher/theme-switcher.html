@@ -1,0 +1,19 @@
+<div class="gp-theme-switcher" role="group" [attr.aria-label]="labelText()">
+  <label class="gp-theme-switcher__control">
+    <span class="gp-theme-switcher__label">{{ labelText() }}</span>
+    <select class="gp-theme-switcher__select" [value]="currentThemeId() ?? ''" (change)="onThemeChange($event)">
+      @for (option of resolvedOptions(); track option.id) {
+      <option [value]="option.id">{{ option.label }}</option>
+      }
+    </select>
+  </label>
+
+  <label class="gp-theme-switcher__control">
+    <span class="gp-theme-switcher__label">{{ modeLabelText() }}</span>
+    <select class="gp-theme-switcher__select" [value]="currentThemeMode()" (change)="onThemeModeChange($event)">
+      @for (mode of resolvedModeOptions(); track mode.id) {
+      <option [value]="mode.id">{{ mode.label }}</option>
+      }
+    </select>
+  </label>
+</div>

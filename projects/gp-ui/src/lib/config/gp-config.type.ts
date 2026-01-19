@@ -4,4 +4,6 @@ import type { ComponentThemeOverrides } from '../base/style/base.style'
 export type GpConfigType = {
   translations?: Translations
   theme?: ComponentThemeOverrides
+  themeId?: string
+  themeMode?: 'auto' | 'light' | 'dark'
 }

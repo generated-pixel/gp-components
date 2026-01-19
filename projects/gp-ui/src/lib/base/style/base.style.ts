@@ -7,7 +7,7 @@ export type StyleValue = string | number
 export interface ComponentStyleConfig {
   classes?: string[]
   host?: Record<string, StyleValue>
-  vars?: Record<string, StyleValue>
+  vars?: ComponentVarsDefinition
   css?: string
 }
 
@@ -15,6 +15,21 @@ export type ComponentThemeOverrides = Record<string, ComponentStyleConfig>
 
 export interface ComponentStyleHandle {
   destroy(): void
+}
+
+export type ComponentThemeColorMode = 'light' | 'dark'
+
+export interface ComponentVarsDefinition extends Partial<
+  Record<'default' | 'light' | 'dark', Record<string, StyleValue>>
+> {
+  [key: string]: StyleValue | Record<string, StyleValue> | undefined
+}
+
+export interface NormalizedComponentVars {
+  base: Record<string, StyleValue>
+  default: Record<string, StyleValue>
+  light: Record<string, StyleValue>
+  dark: Record<string, StyleValue>
 }
 
 @Injectable()
@@ -26,6 +41,8 @@ export abstract class BaseStyle<TTheme extends ComponentStyleConfig = ComponentS
   private readonly appliedHostStyles = new Map<string, string>()
   private readonly appliedVars = new Map<string, string>()
   private styleElement?: HTMLStyleElement
+  private mediaQueryList?: MediaQueryList
+  private mediaQueryListener?: (event: MediaQueryListEvent) => void
 
   protected abstract readonly componentName: string
 
@@ -40,28 +57,102 @@ export abstract class BaseStyle<TTheme extends ComponentStyleConfig = ComponentS
   }
 
   attach(host: HTMLElement, renderer: Renderer2, overrides?: Partial<TTheme>): ComponentStyleHandle {
-    const applyTheme = () => this.apply(host, renderer, overrides)
+    const applyTheme = () => this.apply(host, renderer, overrides, this.resolveEffectiveMode())
+    const setupAutoModeListener = () => this.setupMediaQueryListener(applyTheme)
 
     applyTheme()
+    setupAutoModeListener()
 
-    const subscription = this.config.themeObservable.subscribe(() => {
+    const themeSubscription = this.config.themeObservable.subscribe(() => {
+      applyTheme()
+    })
+
+    const modeSubscription = this.config.themeModeObservable.subscribe(() => {
+      setupAutoModeListener()
       applyTheme()
     })
 
     return {
       destroy: () => {
-        subscription.unsubscribe()
+        themeSubscription.unsubscribe()
+        modeSubscription.unsubscribe()
+        this.disposeMediaQueryListener()
       },
     }
   }
 
-  private apply(host: HTMLElement, renderer: Renderer2, overrides?: Partial<TTheme>): void {
+  private apply(
+    host: HTMLElement,
+    renderer: Renderer2,
+    overrides: Partial<TTheme> | undefined,
+    mode: ComponentThemeColorMode
+  ): void {
     const theme = this.resolveTheme(overrides)
 
     this.applyClasses(host, renderer, theme.classes)
     this.applyHostStyles(host, renderer, theme.host)
-    this.applyVars(host, theme.vars)
+    this.applyVars(host, theme.vars, mode)
     this.ensureGlobalCss(theme.css)
+  }
+
+  private resolveEffectiveMode(): ComponentThemeColorMode {
+    const mode = this.config.themeMode()
+
+    if (mode === 'dark' || mode === 'light') {
+      return mode
+    }
+
+    const view = this.document.defaultView
+
+    if (view?.matchMedia) {
+      return view.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    }
+
+    return 'light'
+  }
+
+  private setupMediaQueryListener(onChange: () => void): void {
+    this.disposeMediaQueryListener()
+
+    if (this.config.themeMode() !== 'auto') {
+      return
+    }
+
+    const view = this.document.defaultView
+
+    if (!view?.matchMedia) {
+      return
+    }
+
+    const query = view.matchMedia('(prefers-color-scheme: dark)')
+    const listener = () => onChange()
+
+    if (typeof query.addEventListener === 'function') {
+      query.addEventListener('change', listener)
+    } else if (typeof query.addListener === 'function') {
+      query.addListener(listener)
+    }
+
+    this.mediaQueryList = query
+    this.mediaQueryListener = listener
+  }
+
+  private disposeMediaQueryListener(): void {
+    if (!this.mediaQueryList || !this.mediaQueryListener) {
+      return
+    }
+
+    const query = this.mediaQueryList
+    const listener = this.mediaQueryListener
+
+    if (typeof query.removeEventListener === 'function') {
+      query.removeEventListener('change', listener)
+    } else if (typeof query.removeListener === 'function') {
+      query.removeListener(listener)
+    }
+
+    this.mediaQueryList = undefined
+    this.mediaQueryListener = undefined
   }
 
   private resolveTheme(overrides?: Partial<TTheme>): ComponentStyleConfig {
@@ -116,8 +207,8 @@ export abstract class BaseStyle<TTheme extends ComponentStyleConfig = ComponentS
     })
   }
 
-  private applyVars(host: HTMLElement, vars?: Record<string, StyleValue>): void {
-    const variables = vars ?? {}
+  private applyVars(host: HTMLElement, vars: ComponentVarsDefinition | undefined, mode: ComponentThemeColorMode): void {
+    const variables = resolveComponentVarsForMode(vars, mode)
     const entries = Object.entries(variables).map(([key, value]) => [this.toCssVarName(key), value] as const)
     const nextKeys = new Set(entries.map(([key]) => key))
 
@@ -200,12 +291,7 @@ function mergeThemes(...themes: Array<ComponentStyleConfig | undefined>): Compon
       }
     }
 
-    if (theme.vars) {
-      accumulator.vars = {
-        ...(accumulator.vars ?? {}),
-        ...theme.vars,
-      }
-    }
+    accumulator.vars = mergeComponentVars(accumulator.vars, theme.vars)
 
     if (theme.classes) {
       const classes = new Set(accumulator.classes ?? [])
@@ -219,6 +305,103 @@ function mergeThemes(...themes: Array<ComponentStyleConfig | undefined>): Compon
 
     return accumulator
   }, {})
+}
+
+export function mergeComponentVars(
+  existing?: ComponentVarsDefinition,
+  incoming?: ComponentVarsDefinition
+): ComponentVarsDefinition | undefined {
+  if (!existing) {
+    return cloneComponentVars(incoming)
+  }
+
+  if (!incoming) {
+    return cloneComponentVars(existing)
+  }
+
+  const existingNormalized = normalizeComponentVars(existing)
+  const incomingNormalized = normalizeComponentVars(incoming)
+
+  return denormalizeComponentVars({
+    base: { ...existingNormalized.base, ...incomingNormalized.base },
+    default: { ...existingNormalized.default, ...incomingNormalized.default },
+    light: { ...existingNormalized.light, ...incomingNormalized.light },
+    dark: { ...existingNormalized.dark, ...incomingNormalized.dark },
+  })
+}
+
+export function cloneComponentVars(vars?: ComponentVarsDefinition): ComponentVarsDefinition | undefined {
+  if (!vars) {
+    return undefined
+  }
+
+  return denormalizeComponentVars(normalizeComponentVars(vars))
+}
+
+export function normalizeComponentVars(vars?: ComponentVarsDefinition): NormalizedComponentVars {
+  const normalized: NormalizedComponentVars = {
+    base: {},
+    default: {},
+    light: {},
+    dark: {},
+  }
+
+  if (!vars || typeof vars !== 'object') {
+    return normalized
+  }
+
+  Object.entries(vars).forEach(([key, value]) => {
+    if (key === 'default' || key === 'light' || key === 'dark') {
+      if (isStyleRecord(value)) {
+        normalized[key] = { ...normalized[key], ...value }
+      }
+
+      return
+    }
+
+    if (isStyleValuePrimitive(value)) {
+      normalized.base[key] = value
+    }
+  })
+
+  return normalized
+}
+
+export function denormalizeComponentVars(vars: NormalizedComponentVars): ComponentVarsDefinition | undefined {
+  const result: ComponentVarsDefinition = {}
+
+  Object.entries(vars.base).forEach(([key, value]) => {
+    result[key] = value
+  })
+
+  if (Object.keys(vars.default).length) {
+    result.default = { ...vars.default }
+  }
+
+  if (Object.keys(vars.light).length) {
+    result.light = { ...vars.light }
+  }
+
+  if (Object.keys(vars.dark).length) {
+    result.dark = { ...vars.dark }
+  }
+
+  return Object.keys(result).length ? result : undefined
+}
+
+function resolveComponentVarsForMode(
+  vars: ComponentVarsDefinition | undefined,
+  mode: ComponentThemeColorMode
+): Record<string, StyleValue> {
+  const normalized = normalizeComponentVars(vars)
+
+  const modeValues = mode === 'dark' ? normalized.dark : normalized.light
+
+  return {
+    ...normalized.base,
+    ...normalized.default,
+    ...modeValues,
+  }
 }
 
 function normalizeStyleRecord(styles: Record<string, StyleValue>): Record<string, StyleValue> {
@@ -243,4 +426,12 @@ function toKebabCase(value: string): string {
     .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
     .replace(/[_\s]+/g, '-')
     .toLowerCase()
+}
+
+function isStyleRecord(value: unknown): value is Record<string, StyleValue> {
+  return !!value && typeof value === 'object' && !Array.isArray(value)
+}
+
+function isStyleValuePrimitive(value: unknown): value is StyleValue {
+  return typeof value === 'string' || typeof value === 'number'
 }

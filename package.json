@@ -10,7 +10,7 @@
     "build:serve": "ng serve demo",
     "watch": "ng build --watch --configuration=development",
     "test": "ng test",
-    "prebuild": "npm run extract:classes",
+    "prebuild": "pnpm run extract:classes",
     "extract:watch": "node tools/watch-css-classes.js",
     "extract:classes": "node tools/extract-css-classes.js",
     "lib:build": "ng build gp-ui --configuration=production && node tools/bundle-css.js",

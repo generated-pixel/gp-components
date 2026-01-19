@@ -23,13 +23,13 @@ export class LabelStyle extends BaseStyle<LabelTheme> {
         'letter-spacing': 'var(--gp-label-letter-spacing)',
       },
       vars: {
-        color: '#374151',
-        gap: '0.25rem',
-        fontSize: '0.875rem',
-        fontWeight: '600',
-        textTransform: 'none',
-        letterSpacing: '0',
-        requiredColor: '#dc2626',
+        color: 'var(--gp-label-theme-color, #374151)',
+        gap: 'var(--gp-label-theme-gap, 0.25rem)',
+        fontSize: 'var(--gp-label-theme-font-size, 0.875rem)',
+        fontWeight: 'var(--gp-label-theme-font-weight, 600)',
+        textTransform: 'var(--gp-label-theme-text-transform, none)',
+        letterSpacing: 'var(--gp-label-theme-letter-spacing, 0)',
+        requiredColor: 'var(--gp-label-theme-required-color, #dc2626)',
       },
       css: `
         gp-label.gp-label-root[aria-required='true']::after {

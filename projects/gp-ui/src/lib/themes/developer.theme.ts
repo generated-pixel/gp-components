@@ -1,18 +1,18 @@
-import { ComponentThemeOverrides } from '../base/style/base.style'
+import { ComponentThemeOverrides } from '../base/style/base.style';
 import {
   GpComponentThemeDefinition,
   GpThemeDefinition,
   GpThemePrimitiveDefinition,
   GpThemeSemanticDefinition,
-} from '../interfaces'
-import { resolveThemeComponents } from './theme-definition.utils'
-import { GP_BASE_THEME_PRIMITIVES } from './palette'
+} from '../interfaces';
+import { resolveThemeComponents } from './theme-definition.utils';
+import { GP_BASE_THEME_PRIMITIVES } from './palette';
 
 const GP_DEVELOPER_THEME_PRIMITIVES: GpThemePrimitiveDefinition = {
   ...GP_BASE_THEME_PRIMITIVES,
-}
+};
 
-const P = GP_BASE_THEME_PRIMITIVES
+const P = GP_BASE_THEME_PRIMITIVES;
 
 const GP_DEVELOPER_THEME_SEMANTIC: GpThemeSemanticDefinition = {
   colorSchema: {
@@ -250,16 +250,20 @@ const GP_DEVELOPER_THEME_SEMANTIC: GpThemeSemanticDefinition = {
   image: { vars: { default: { themeMobileWidth: '100%', themeMobilePadding: '0.5rem' } } },
   metergroup: { vars: { default: { themeMobileWidth: '100%', themeMobilePadding: '0.5rem' } } },
   progressbar: { vars: { default: { themeMobileWidth: '100%', themeMobilePadding: '0.5rem' } } },
-  progressspinner: { vars: { default: { themeMobileWidth: '100%', themeMobilePadding: '0.5rem' } } },
+  progressspinner: {
+    vars: { default: { themeMobileWidth: '100%', themeMobilePadding: '0.5rem' } },
+  },
   rating: { vars: { default: { themeMobileWidth: '100%', themeMobilePadding: '0.5rem' } } },
   skeleton: { vars: { default: { themeMobileWidth: '100%', themeMobilePadding: '0.5rem' } } },
-}
+};
 
 // Developer theme with light and dark modes optimized for high-contrast UIs.
 export const GP_DEVELOPER_THEME_DEFINITION: GpThemeDefinition = {
   name: 'Developer',
   primitives: GP_DEVELOPER_THEME_PRIMITIVES,
   semantic: GP_DEVELOPER_THEME_SEMANTIC,
-}
+};
 
-export const GP_DEVELOPER_THEME: ComponentThemeOverrides = resolveThemeComponents(GP_DEVELOPER_THEME_DEFINITION)
+export const GP_DEVELOPER_THEME: ComponentThemeOverrides = resolveThemeComponents(
+  GP_DEVELOPER_THEME_DEFINITION,
+);

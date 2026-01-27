@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type ButtonTheme = ComponentStyleConfig
+export type ButtonTheme = ComponentStyleConfig;
 
-export const BUTTON_STYLE = new InjectionToken<BaseStyle<ButtonTheme>>('BUTTON_STYLE')
+export const BUTTON_STYLE = new InjectionToken<BaseStyle<ButtonTheme>>('BUTTON_STYLE');
 
 @Injectable()
 export class ButtonStyle extends BaseStyle<ButtonTheme> {
-  protected readonly componentName = 'gp-button'
+  protected readonly componentName = 'gp-button';
 
   protected getDefaultTheme(): ButtonTheme {
     return {
@@ -40,11 +40,11 @@ export class ButtonStyle extends BaseStyle<ButtonTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const BUTTON_STYLE_PROVIDER: Provider = {
   provide: BUTTON_STYLE,
   useClass: ButtonStyle,
-}
+};

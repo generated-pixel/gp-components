@@ -1,13 +1,15 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type DatePickerTheme = ComponentStyleConfig
+export type DatePickerTheme = ComponentStyleConfig;
 
-export const DATE_PICKER_STYLE = new InjectionToken<BaseStyle<DatePickerTheme>>('DATE_PICKER_STYLE')
+export const DATE_PICKER_STYLE = new InjectionToken<BaseStyle<DatePickerTheme>>(
+  'DATE_PICKER_STYLE',
+);
 
 @Injectable()
 export class DatePickerStyle extends BaseStyle<DatePickerTheme> {
-  protected readonly componentName = 'gp-date-picker'
+  protected readonly componentName = 'gp-date-picker';
 
   protected getDefaultTheme(): DatePickerTheme {
     return {
@@ -40,11 +42,11 @@ export class DatePickerStyle extends BaseStyle<DatePickerTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const DATE_PICKER_STYLE_PROVIDER: Provider = {
   provide: DATE_PICKER_STYLE,
   useClass: DatePickerStyle,
-}
+};

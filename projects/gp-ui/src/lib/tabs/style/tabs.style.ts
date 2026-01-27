@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type TabsTheme = ComponentStyleConfig
+export type TabsTheme = ComponentStyleConfig;
 
-export const TABS_STYLE = new InjectionToken<BaseStyle<TabsTheme>>('TABS_STYLE')
+export const TABS_STYLE = new InjectionToken<BaseStyle<TabsTheme>>('TABS_STYLE');
 
 @Injectable()
 export class TabsStyle extends BaseStyle<TabsTheme> {
-  protected readonly componentName = 'gp-tabs'
+  protected readonly componentName = 'gp-tabs';
 
   protected getDefaultTheme(): TabsTheme {
     return {
@@ -40,11 +40,11 @@ export class TabsStyle extends BaseStyle<TabsTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const TABS_STYLE_PROVIDER: Provider = {
   provide: TABS_STYLE,
   useClass: TabsStyle,
-}
+};

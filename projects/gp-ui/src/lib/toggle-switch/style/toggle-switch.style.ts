@@ -1,13 +1,15 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type ToggleSwitchTheme = ComponentStyleConfig
+export type ToggleSwitchTheme = ComponentStyleConfig;
 
-export const TOGGLE_SWITCH_STYLE = new InjectionToken<BaseStyle<ToggleSwitchTheme>>('TOGGLE_SWITCH_STYLE')
+export const TOGGLE_SWITCH_STYLE = new InjectionToken<BaseStyle<ToggleSwitchTheme>>(
+  'TOGGLE_SWITCH_STYLE',
+);
 
 @Injectable()
 export class ToggleSwitchStyle extends BaseStyle<ToggleSwitchTheme> {
-  protected readonly componentName = 'gp-toggle-switch'
+  protected readonly componentName = 'gp-toggle-switch';
 
   protected getDefaultTheme(): ToggleSwitchTheme {
     return {
@@ -40,11 +42,11 @@ export class ToggleSwitchStyle extends BaseStyle<ToggleSwitchTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const TOGGLE_SWITCH_STYLE_PROVIDER: Provider = {
   provide: TOGGLE_SWITCH_STYLE,
   useClass: ToggleSwitchStyle,
-}
+};

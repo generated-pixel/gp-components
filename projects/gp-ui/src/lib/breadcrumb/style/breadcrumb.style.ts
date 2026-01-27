@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type BreadcrumbTheme = ComponentStyleConfig
+export type BreadcrumbTheme = ComponentStyleConfig;
 
-export const BREADCRUMB_STYLE = new InjectionToken<BaseStyle<BreadcrumbTheme>>('BREADCRUMB_STYLE')
+export const BREADCRUMB_STYLE = new InjectionToken<BaseStyle<BreadcrumbTheme>>('BREADCRUMB_STYLE');
 
 @Injectable()
 export class BreadcrumbStyle extends BaseStyle<BreadcrumbTheme> {
-  protected readonly componentName = 'gp-breadcrumb'
+  protected readonly componentName = 'gp-breadcrumb';
 
   protected getDefaultTheme(): BreadcrumbTheme {
     return {
@@ -40,11 +40,11 @@ export class BreadcrumbStyle extends BaseStyle<BreadcrumbTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const BREADCRUMB_STYLE_PROVIDER: Provider = {
   provide: BREADCRUMB_STYLE,
   useClass: BreadcrumbStyle,
-}
+};

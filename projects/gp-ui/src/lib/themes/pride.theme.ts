@@ -1,12 +1,12 @@
-import { ComponentThemeOverrides } from '../base/style/base.style'
+import { ComponentThemeOverrides } from '../base/style/base.style';
 import {
   GpComponentThemeDefinition,
   GpThemeDefinition,
   GpThemePrimitiveDefinition,
   GpThemeSemanticDefinition,
-} from '../interfaces'
-import { resolveThemeComponents } from './theme-definition.utils'
-import { GP_BASE_THEME_PRIMITIVES } from './palette'
+} from '../interfaces';
+import { resolveThemeComponents } from './theme-definition.utils';
+import { GP_BASE_THEME_PRIMITIVES } from './palette';
 
 const GP_PRIDE_THEME_PRIMITIVES: GpThemePrimitiveDefinition = {
   ...GP_BASE_THEME_PRIMITIVES,
@@ -36,9 +36,9 @@ const GP_PRIDE_THEME_PRIMITIVES: GpThemePrimitiveDefinition = {
     900: '#0b1120',
     950: '#020617',
   },
-}
+};
 
-const P = GP_BASE_THEME_PRIMITIVES
+const P = GP_BASE_THEME_PRIMITIVES;
 
 const GP_PRIDE_THEME_SEMANTIC: GpThemeSemanticDefinition = {
   colorSchema: {
@@ -300,7 +300,7 @@ const GP_PRIDE_THEME_SEMANTIC: GpThemeSemanticDefinition = {
       },
     },
   },
-}
+};
 
 const GP_PRIDE_THEME_COMPONENTS: Record<string, GpComponentThemeDefinition> = {
   'gp-theme-switcher': {
@@ -412,10 +412,12 @@ const GP_PRIDE_THEME_COMPONENTS: Record<string, GpComponentThemeDefinition> = {
   image: { vars: { default: { themeMobileWidth: '100%', themeMobilePadding: '0.5rem' } } },
   metergroup: { vars: { default: { themeMobileWidth: '100%', themeMobilePadding: '0.5rem' } } },
   progressbar: { vars: { default: { themeMobileWidth: '100%', themeMobilePadding: '0.5rem' } } },
-  progressspinner: { vars: { default: { themeMobileWidth: '100%', themeMobilePadding: '0.5rem' } } },
+  progressspinner: {
+    vars: { default: { themeMobileWidth: '100%', themeMobilePadding: '0.5rem' } },
+  },
   rating: { vars: { default: { themeMobileWidth: '100%', themeMobilePadding: '0.5rem' } } },
   skeleton: { vars: { default: { themeMobileWidth: '100%', themeMobilePadding: '0.5rem' } } },
-}
+};
 
 // Vibrant theme celebrating Pride Month with saturated accents.
 export const GP_PRIDE_THEME_DEFINITION: GpThemeDefinition = {
@@ -423,6 +425,7 @@ export const GP_PRIDE_THEME_DEFINITION: GpThemeDefinition = {
   primitives: GP_PRIDE_THEME_PRIMITIVES,
   semantic: GP_PRIDE_THEME_SEMANTIC,
   components: GP_PRIDE_THEME_COMPONENTS,
-}
+};
 
-export const GP_PRIDE_THEME: ComponentThemeOverrides = resolveThemeComponents(GP_PRIDE_THEME_DEFINITION)
+export const GP_PRIDE_THEME: ComponentThemeOverrides =
+  resolveThemeComponents(GP_PRIDE_THEME_DEFINITION);

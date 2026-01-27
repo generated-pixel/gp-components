@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core'
-import { BaseInput } from '../base-input/base-input'
-import { CASCADE_SELECT_STYLE, CASCADE_SELECT_STYLE_PROVIDER } from './style/cascade-select.style'
+import { Component, inject } from '@angular/core';
+import { BaseInput } from '../base-input/base-input';
+import { CASCADE_SELECT_STYLE, CASCADE_SELECT_STYLE_PROVIDER } from './style/cascade-select.style';
 
 @Component({
   selector: 'gp-cascade-select',
@@ -9,9 +9,9 @@ import { CASCADE_SELECT_STYLE, CASCADE_SELECT_STYLE_PROVIDER } from './style/cas
   providers: [CASCADE_SELECT_STYLE_PROVIDER],
 })
 export class CascadeSelect extends BaseInput {
-  private readonly style = inject(CASCADE_SELECT_STYLE)
+  private readonly style = inject(CASCADE_SELECT_STYLE);
 
   onInit(): void {
-    this.attachStyle(this.style)
+    this.attachStyle(this.style);
   }
 }

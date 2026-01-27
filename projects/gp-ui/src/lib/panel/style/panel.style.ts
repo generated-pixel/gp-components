@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type PanelTheme = ComponentStyleConfig
+export type PanelTheme = ComponentStyleConfig;
 
-export const PANEL_STYLE = new InjectionToken<BaseStyle<PanelTheme>>('PANEL_STYLE')
+export const PANEL_STYLE = new InjectionToken<BaseStyle<PanelTheme>>('PANEL_STYLE');
 
 @Injectable()
 export class PanelStyle extends BaseStyle<PanelTheme> {
-  protected readonly componentName = 'gp-panel'
+  protected readonly componentName = 'gp-panel';
 
   protected getDefaultTheme(): PanelTheme {
     return {
@@ -38,11 +38,11 @@ export class PanelStyle extends BaseStyle<PanelTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const PANEL_STYLE_PROVIDER: Provider = {
   provide: PANEL_STYLE,
   useClass: PanelStyle,
-}
+};

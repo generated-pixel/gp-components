@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type DataViewTheme = ComponentStyleConfig
+export type DataViewTheme = ComponentStyleConfig;
 
-export const DATA_VIEW_STYLE = new InjectionToken<BaseStyle<DataViewTheme>>('DATA_VIEW_STYLE')
+export const DATA_VIEW_STYLE = new InjectionToken<BaseStyle<DataViewTheme>>('DATA_VIEW_STYLE');
 
 @Injectable()
 export class DataViewStyle extends BaseStyle<DataViewTheme> {
-  protected readonly componentName = 'gp-data-view'
+  protected readonly componentName = 'gp-data-view';
 
   protected getDefaultTheme(): DataViewTheme {
     return {
@@ -40,11 +40,11 @@ export class DataViewStyle extends BaseStyle<DataViewTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const DATA_VIEW_STYLE_PROVIDER: Provider = {
   provide: DATA_VIEW_STYLE,
   useClass: DataViewStyle,
-}
+};

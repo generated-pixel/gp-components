@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type PickListTheme = ComponentStyleConfig
+export type PickListTheme = ComponentStyleConfig;
 
-export const PICK_LIST_STYLE = new InjectionToken<BaseStyle<PickListTheme>>('PICK_LIST_STYLE')
+export const PICK_LIST_STYLE = new InjectionToken<BaseStyle<PickListTheme>>('PICK_LIST_STYLE');
 
 @Injectable()
 export class PickListStyle extends BaseStyle<PickListTheme> {
-  protected readonly componentName = 'gp-pick-list'
+  protected readonly componentName = 'gp-pick-list';
 
   protected getDefaultTheme(): PickListTheme {
     return {
@@ -40,11 +40,11 @@ export class PickListStyle extends BaseStyle<PickListTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const PICK_LIST_STYLE_PROVIDER: Provider = {
   provide: PICK_LIST_STYLE,
   useClass: PickListStyle,
-}
+};

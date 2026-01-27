@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type RatingTheme = ComponentStyleConfig
+export type RatingTheme = ComponentStyleConfig;
 
-export const RATING_STYLE = new InjectionToken<BaseStyle<RatingTheme>>('RATING_STYLE')
+export const RATING_STYLE = new InjectionToken<BaseStyle<RatingTheme>>('RATING_STYLE');
 
 @Injectable()
 export class RatingStyle extends BaseStyle<RatingTheme> {
-  protected readonly componentName = 'gp-rating'
+  protected readonly componentName = 'gp-rating';
 
   protected getDefaultTheme(): RatingTheme {
     return {
@@ -40,11 +40,11 @@ export class RatingStyle extends BaseStyle<RatingTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const RATING_STYLE_PROVIDER: Provider = {
   provide: RATING_STYLE,
   useClass: RatingStyle,
-}
+};

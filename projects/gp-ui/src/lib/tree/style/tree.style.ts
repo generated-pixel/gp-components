@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type TreeTheme = ComponentStyleConfig
+export type TreeTheme = ComponentStyleConfig;
 
-export const TREE_STYLE = new InjectionToken<BaseStyle<TreeTheme>>('TREE_STYLE')
+export const TREE_STYLE = new InjectionToken<BaseStyle<TreeTheme>>('TREE_STYLE');
 
 @Injectable()
 export class TreeStyle extends BaseStyle<TreeTheme> {
-  protected readonly componentName = 'gp-tree'
+  protected readonly componentName = 'gp-tree';
 
   protected getDefaultTheme(): TreeTheme {
     return {
@@ -40,11 +40,11 @@ export class TreeStyle extends BaseStyle<TreeTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const TREE_STYLE_PROVIDER: Provider = {
   provide: TREE_STYLE,
   useClass: TreeStyle,
-}
+};

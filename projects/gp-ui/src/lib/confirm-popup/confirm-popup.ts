@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core'
-import { Base } from '../base/base'
-import { CONFIRM_POPUP_STYLE, CONFIRM_POPUP_STYLE_PROVIDER } from './style/confirm-popup.style'
+import { Component, inject } from '@angular/core';
+import { Base } from '../base/base';
+import { CONFIRM_POPUP_STYLE, CONFIRM_POPUP_STYLE_PROVIDER } from './style/confirm-popup.style';
 
 @Component({
   selector: 'gp-confirm-popup',
@@ -9,9 +9,9 @@ import { CONFIRM_POPUP_STYLE, CONFIRM_POPUP_STYLE_PROVIDER } from './style/confi
   providers: [CONFIRM_POPUP_STYLE_PROVIDER],
 })
 export class ConfirmPopup extends Base {
-  private readonly style = inject(CONFIRM_POPUP_STYLE)
+  private readonly style = inject(CONFIRM_POPUP_STYLE);
 
   onInit(): void {
-    this.attachStyle(this.style)
+    this.attachStyle(this.style);
   }
 }

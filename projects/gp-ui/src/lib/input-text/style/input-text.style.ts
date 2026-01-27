@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type InputTextTheme = ComponentStyleConfig
+export type InputTextTheme = ComponentStyleConfig;
 
-export const INPUT_TEXT_STYLE = new InjectionToken<BaseStyle<InputTextTheme>>('INPUT_TEXT_STYLE')
+export const INPUT_TEXT_STYLE = new InjectionToken<BaseStyle<InputTextTheme>>('INPUT_TEXT_STYLE');
 
 @Injectable()
 export class InputTextStyle extends BaseStyle<InputTextTheme> {
-  protected readonly componentName = 'gp-input-text'
+  protected readonly componentName = 'gp-input-text';
 
   protected getDefaultTheme(): InputTextTheme {
     return {
@@ -64,11 +64,11 @@ export class InputTextStyle extends BaseStyle<InputTextTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const INPUT_TEXT_STYLE_PROVIDER: Provider = {
   provide: INPUT_TEXT_STYLE,
   useClass: InputTextStyle,
-}
+};

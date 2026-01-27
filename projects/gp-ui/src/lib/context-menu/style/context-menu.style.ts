@@ -1,13 +1,15 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type ContextMenuTheme = ComponentStyleConfig
+export type ContextMenuTheme = ComponentStyleConfig;
 
-export const CONTEXT_MENU_STYLE = new InjectionToken<BaseStyle<ContextMenuTheme>>('CONTEXT_MENU_STYLE')
+export const CONTEXT_MENU_STYLE = new InjectionToken<BaseStyle<ContextMenuTheme>>(
+  'CONTEXT_MENU_STYLE',
+);
 
 @Injectable()
 export class ContextMenuStyle extends BaseStyle<ContextMenuTheme> {
-  protected readonly componentName = 'gp-context-menu'
+  protected readonly componentName = 'gp-context-menu';
 
   protected getDefaultTheme(): ContextMenuTheme {
     return {
@@ -40,11 +42,11 @@ export class ContextMenuStyle extends BaseStyle<ContextMenuTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const CONTEXT_MENU_STYLE_PROVIDER: Provider = {
   provide: CONTEXT_MENU_STYLE,
   useClass: ContextMenuStyle,
-}
+};

@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core'
-import { Base } from '../base/base'
-import { LABEL_STYLE, LABEL_STYLE_PROVIDER } from './style/label.style'
+import { Component, inject } from '@angular/core';
+import { Base } from '../base/base';
+import { LABEL_STYLE, LABEL_STYLE_PROVIDER } from './style/label.style';
 
 @Component({
   selector: 'gp-label',
@@ -9,9 +9,9 @@ import { LABEL_STYLE, LABEL_STYLE_PROVIDER } from './style/label.style'
   providers: [LABEL_STYLE_PROVIDER],
 })
 export class Label extends Base {
-  private readonly style = inject(LABEL_STYLE)
+  private readonly style = inject(LABEL_STYLE);
 
   onInit(): void {
-    this.attachStyle(this.style)
+    this.attachStyle(this.style);
   }
 }

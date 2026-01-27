@@ -1,13 +1,15 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type SelectButtonTheme = ComponentStyleConfig
+export type SelectButtonTheme = ComponentStyleConfig;
 
-export const SELECT_BUTTON_STYLE = new InjectionToken<BaseStyle<SelectButtonTheme>>('SELECT_BUTTON_STYLE')
+export const SELECT_BUTTON_STYLE = new InjectionToken<BaseStyle<SelectButtonTheme>>(
+  'SELECT_BUTTON_STYLE',
+);
 
 @Injectable()
 export class SelectButtonStyle extends BaseStyle<SelectButtonTheme> {
-  protected readonly componentName = 'gp-select-button'
+  protected readonly componentName = 'gp-select-button';
 
   protected getDefaultTheme(): SelectButtonTheme {
     return {
@@ -40,11 +42,11 @@ export class SelectButtonStyle extends BaseStyle<SelectButtonTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const SELECT_BUTTON_STYLE_PROVIDER: Provider = {
   provide: SELECT_BUTTON_STYLE,
   useClass: SelectButtonStyle,
-}
+};

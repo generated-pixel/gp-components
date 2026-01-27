@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type CarouselTheme = ComponentStyleConfig
+export type CarouselTheme = ComponentStyleConfig;
 
-export const CAROUSEL_STYLE = new InjectionToken<BaseStyle<CarouselTheme>>('CAROUSEL_STYLE')
+export const CAROUSEL_STYLE = new InjectionToken<BaseStyle<CarouselTheme>>('CAROUSEL_STYLE');
 
 @Injectable()
 export class CarouselStyle extends BaseStyle<CarouselTheme> {
-  protected readonly componentName = 'gp-carousel'
+  protected readonly componentName = 'gp-carousel';
 
   protected getDefaultTheme(): CarouselTheme {
     return {
@@ -40,11 +40,11 @@ export class CarouselStyle extends BaseStyle<CarouselTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const CAROUSEL_STYLE_PROVIDER: Provider = {
   provide: CAROUSEL_STYLE,
   useClass: CarouselStyle,
-}
+};

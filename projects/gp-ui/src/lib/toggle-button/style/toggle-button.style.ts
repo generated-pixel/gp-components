@@ -1,13 +1,15 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type ToggleButtonTheme = ComponentStyleConfig
+export type ToggleButtonTheme = ComponentStyleConfig;
 
-export const TOGGLE_BUTTON_STYLE = new InjectionToken<BaseStyle<ToggleButtonTheme>>('TOGGLE_BUTTON_STYLE')
+export const TOGGLE_BUTTON_STYLE = new InjectionToken<BaseStyle<ToggleButtonTheme>>(
+  'TOGGLE_BUTTON_STYLE',
+);
 
 @Injectable()
 export class ToggleButtonStyle extends BaseStyle<ToggleButtonTheme> {
-  protected readonly componentName = 'gp-toggle-button'
+  protected readonly componentName = 'gp-toggle-button';
 
   protected getDefaultTheme(): ToggleButtonTheme {
     return {
@@ -40,11 +42,11 @@ export class ToggleButtonStyle extends BaseStyle<ToggleButtonTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const TOGGLE_BUTTON_STYLE_PROVIDER: Provider = {
   provide: TOGGLE_BUTTON_STYLE,
   useClass: ToggleButtonStyle,
-}
+};

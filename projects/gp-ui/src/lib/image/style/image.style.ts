@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type ImageTheme = ComponentStyleConfig
+export type ImageTheme = ComponentStyleConfig;
 
-export const IMAGE_STYLE = new InjectionToken<BaseStyle<ImageTheme>>('IMAGE_STYLE')
+export const IMAGE_STYLE = new InjectionToken<BaseStyle<ImageTheme>>('IMAGE_STYLE');
 
 @Injectable()
 export class ImageStyle extends BaseStyle<ImageTheme> {
-  protected readonly componentName = 'gp-image'
+  protected readonly componentName = 'gp-image';
 
   protected getDefaultTheme(): ImageTheme {
     return {
@@ -40,11 +40,11 @@ export class ImageStyle extends BaseStyle<ImageTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const IMAGE_STYLE_PROVIDER: Provider = {
   provide: IMAGE_STYLE,
   useClass: ImageStyle,
-}
+};

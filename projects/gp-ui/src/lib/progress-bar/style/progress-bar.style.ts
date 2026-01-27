@@ -1,13 +1,15 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type ProgressBarTheme = ComponentStyleConfig
+export type ProgressBarTheme = ComponentStyleConfig;
 
-export const PROGRESS_BAR_STYLE = new InjectionToken<BaseStyle<ProgressBarTheme>>('PROGRESS_BAR_STYLE')
+export const PROGRESS_BAR_STYLE = new InjectionToken<BaseStyle<ProgressBarTheme>>(
+  'PROGRESS_BAR_STYLE',
+);
 
 @Injectable()
 export class ProgressBarStyle extends BaseStyle<ProgressBarTheme> {
-  protected readonly componentName = 'gp-progress-bar'
+  protected readonly componentName = 'gp-progress-bar';
 
   protected getDefaultTheme(): ProgressBarTheme {
     return {
@@ -40,11 +42,11 @@ export class ProgressBarStyle extends BaseStyle<ProgressBarTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const PROGRESS_BAR_STYLE_PROVIDER: Provider = {
   provide: PROGRESS_BAR_STYLE,
   useClass: ProgressBarStyle,
-}
+};

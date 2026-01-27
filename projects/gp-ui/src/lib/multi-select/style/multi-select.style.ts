@@ -1,13 +1,15 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type MultiSelectTheme = ComponentStyleConfig
+export type MultiSelectTheme = ComponentStyleConfig;
 
-export const MULTI_SELECT_STYLE = new InjectionToken<BaseStyle<MultiSelectTheme>>('MULTI_SELECT_STYLE')
+export const MULTI_SELECT_STYLE = new InjectionToken<BaseStyle<MultiSelectTheme>>(
+  'MULTI_SELECT_STYLE',
+);
 
 @Injectable()
 export class MultiSelectStyle extends BaseStyle<MultiSelectTheme> {
-  protected readonly componentName = 'gp-multi-select'
+  protected readonly componentName = 'gp-multi-select';
 
   protected getDefaultTheme(): MultiSelectTheme {
     return {
@@ -40,11 +42,11 @@ export class MultiSelectStyle extends BaseStyle<MultiSelectTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const MULTI_SELECT_STYLE_PROVIDER: Provider = {
   provide: MULTI_SELECT_STYLE,
   useClass: MultiSelectStyle,
-}
+};

@@ -1,13 +1,15 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type AutoCompleteTheme = ComponentStyleConfig
+export type AutoCompleteTheme = ComponentStyleConfig;
 
-export const AUTO_COMPLETE_STYLE = new InjectionToken<BaseStyle<AutoCompleteTheme>>('AUTO_COMPLETE_STYLE')
+export const AUTO_COMPLETE_STYLE = new InjectionToken<BaseStyle<AutoCompleteTheme>>(
+  'AUTO_COMPLETE_STYLE',
+);
 
 @Injectable()
 export class AutoCompleteStyle extends BaseStyle<AutoCompleteTheme> {
-  protected readonly componentName = 'gp-auto-complete'
+  protected readonly componentName = 'gp-auto-complete';
 
   protected getDefaultTheme(): AutoCompleteTheme {
     return {
@@ -40,11 +42,11 @@ export class AutoCompleteStyle extends BaseStyle<AutoCompleteTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const AUTO_COMPLETE_STYLE_PROVIDER: Provider = {
   provide: AUTO_COMPLETE_STYLE,
   useClass: AutoCompleteStyle,
-}
+};

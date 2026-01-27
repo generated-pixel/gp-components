@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core'
-import { Base } from '../base/base'
-import { METER_GROUP_STYLE, METER_GROUP_STYLE_PROVIDER } from './style/meter-group.style'
+import { Component, inject } from '@angular/core';
+import { Base } from '../base/base';
+import { METER_GROUP_STYLE, METER_GROUP_STYLE_PROVIDER } from './style/meter-group.style';
 
 @Component({
   selector: 'gp-meter-group',
@@ -9,9 +9,9 @@ import { METER_GROUP_STYLE, METER_GROUP_STYLE_PROVIDER } from './style/meter-gro
   providers: [METER_GROUP_STYLE_PROVIDER],
 })
 export class MeterGroup extends Base {
-  private readonly style = inject(METER_GROUP_STYLE)
+  private readonly style = inject(METER_GROUP_STYLE);
 
   onInit(): void {
-    this.attachStyle(this.style)
+    this.attachStyle(this.style);
   }
 }

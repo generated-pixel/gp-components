@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type OrderListTheme = ComponentStyleConfig
+export type OrderListTheme = ComponentStyleConfig;
 
-export const ORDER_LIST_STYLE = new InjectionToken<BaseStyle<OrderListTheme>>('ORDER_LIST_STYLE')
+export const ORDER_LIST_STYLE = new InjectionToken<BaseStyle<OrderListTheme>>('ORDER_LIST_STYLE');
 
 @Injectable()
 export class OrderListStyle extends BaseStyle<OrderListTheme> {
-  protected readonly componentName = 'gp-order-list'
+  protected readonly componentName = 'gp-order-list';
 
   protected getDefaultTheme(): OrderListTheme {
     return {
@@ -40,11 +40,11 @@ export class OrderListStyle extends BaseStyle<OrderListTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const ORDER_LIST_STYLE_PROVIDER: Provider = {
   provide: ORDER_LIST_STYLE,
   useClass: OrderListStyle,
-}
+};

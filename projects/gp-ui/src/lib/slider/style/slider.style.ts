@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type SliderTheme = ComponentStyleConfig
+export type SliderTheme = ComponentStyleConfig;
 
-export const SLIDER_STYLE = new InjectionToken<BaseStyle<SliderTheme>>('SLIDER_STYLE')
+export const SLIDER_STYLE = new InjectionToken<BaseStyle<SliderTheme>>('SLIDER_STYLE');
 
 @Injectable()
 export class SliderStyle extends BaseStyle<SliderTheme> {
-  protected readonly componentName = 'gp-slider'
+  protected readonly componentName = 'gp-slider';
 
   protected getDefaultTheme(): SliderTheme {
     return {
@@ -40,11 +40,11 @@ export class SliderStyle extends BaseStyle<SliderTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const SLIDER_STYLE_PROVIDER: Provider = {
   provide: SLIDER_STYLE,
   useClass: SliderStyle,
-}
+};

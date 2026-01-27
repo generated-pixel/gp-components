@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type InputMaskTheme = ComponentStyleConfig
+export type InputMaskTheme = ComponentStyleConfig;
 
-export const INPUT_MASK_STYLE = new InjectionToken<BaseStyle<InputMaskTheme>>('INPUT_MASK_STYLE')
+export const INPUT_MASK_STYLE = new InjectionToken<BaseStyle<InputMaskTheme>>('INPUT_MASK_STYLE');
 
 @Injectable()
 export class InputMaskStyle extends BaseStyle<InputMaskTheme> {
-  protected readonly componentName = 'gp-input-mask'
+  protected readonly componentName = 'gp-input-mask';
 
   protected getDefaultTheme(): InputMaskTheme {
     return {
@@ -40,11 +40,11 @@ export class InputMaskStyle extends BaseStyle<InputMaskTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const INPUT_MASK_STYLE_PROVIDER: Provider = {
   provide: INPUT_MASK_STYLE,
   useClass: InputMaskStyle,
-}
+};

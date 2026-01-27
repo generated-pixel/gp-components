@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type MenubarTheme = ComponentStyleConfig
+export type MenubarTheme = ComponentStyleConfig;
 
-export const MENUBAR_STYLE = new InjectionToken<BaseStyle<MenubarTheme>>('MENUBAR_STYLE')
+export const MENUBAR_STYLE = new InjectionToken<BaseStyle<MenubarTheme>>('MENUBAR_STYLE');
 
 @Injectable()
 export class MenubarStyle extends BaseStyle<MenubarTheme> {
-  protected readonly componentName = 'gp-menubar'
+  protected readonly componentName = 'gp-menubar';
 
   protected getDefaultTheme(): MenubarTheme {
     return {
@@ -40,11 +40,11 @@ export class MenubarStyle extends BaseStyle<MenubarTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const MENUBAR_STYLE_PROVIDER: Provider = {
   provide: MENUBAR_STYLE,
   useClass: MenubarStyle,
-}
+};

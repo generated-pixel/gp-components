@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type SkeletonTheme = ComponentStyleConfig
+export type SkeletonTheme = ComponentStyleConfig;
 
-export const SKELETON_STYLE = new InjectionToken<BaseStyle<SkeletonTheme>>('SKELETON_STYLE')
+export const SKELETON_STYLE = new InjectionToken<BaseStyle<SkeletonTheme>>('SKELETON_STYLE');
 
 @Injectable()
 export class SkeletonStyle extends BaseStyle<SkeletonTheme> {
-  protected readonly componentName = 'gp-skeleton'
+  protected readonly componentName = 'gp-skeleton';
 
   protected getDefaultTheme(): SkeletonTheme {
     return {
@@ -40,11 +40,11 @@ export class SkeletonStyle extends BaseStyle<SkeletonTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const SKELETON_STYLE_PROVIDER: Provider = {
   provide: SKELETON_STYLE,
   useClass: SkeletonStyle,
-}
+};

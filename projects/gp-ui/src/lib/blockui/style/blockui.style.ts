@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type BlockuiTheme = ComponentStyleConfig
+export type BlockuiTheme = ComponentStyleConfig;
 
-export const BLOCKUI_STYLE = new InjectionToken<BaseStyle<BlockuiTheme>>('BLOCKUI_STYLE')
+export const BLOCKUI_STYLE = new InjectionToken<BaseStyle<BlockuiTheme>>('BLOCKUI_STYLE');
 
 @Injectable()
 export class BlockuiStyle extends BaseStyle<BlockuiTheme> {
-  protected readonly componentName = 'gp-blockui'
+  protected readonly componentName = 'gp-blockui';
 
   protected getDefaultTheme(): BlockuiTheme {
     return {
@@ -40,11 +40,11 @@ export class BlockuiStyle extends BaseStyle<BlockuiTheme> {
           pointer-events: all;
         }
       `,
-    }
+    };
   }
 }
 
 export const BLOCKUI_STYLE_PROVIDER: Provider = {
   provide: BLOCKUI_STYLE,
   useClass: BlockuiStyle,
-}
+};

@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation, inject } from '@angular/core'
-import { Base } from '../../base/base'
-import { BASE_ICON_STYLE, BASE_ICON_STYLE_PROVIDER } from './style/base-icon.style'
+import { ChangeDetectionStrategy, Component, ViewEncapsulation, inject } from '@angular/core';
+import { Base } from '../../base/base';
+import { BASE_ICON_STYLE, BASE_ICON_STYLE_PROVIDER } from './style/base-icon.style';
 
 @Component({
   imports: [],
@@ -18,9 +18,9 @@ import { BASE_ICON_STYLE, BASE_ICON_STYLE_PROVIDER } from './style/base-icon.sty
   },
 })
 export class BaseIcon extends Base {
-  private readonly style = inject(BASE_ICON_STYLE)
+  private readonly style = inject(BASE_ICON_STYLE);
 
   onInit(): void {
-    this.attachStyle(this.style)
+    this.attachStyle(this.style);
   }
 }

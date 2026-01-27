@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type TextareaTheme = ComponentStyleConfig
+export type TextareaTheme = ComponentStyleConfig;
 
-export const TEXTAREA_STYLE = new InjectionToken<BaseStyle<TextareaTheme>>('TEXTAREA_STYLE')
+export const TEXTAREA_STYLE = new InjectionToken<BaseStyle<TextareaTheme>>('TEXTAREA_STYLE');
 
 @Injectable()
 export class TextareaStyle extends BaseStyle<TextareaTheme> {
-  protected readonly componentName = 'gp-textarea'
+  protected readonly componentName = 'gp-textarea';
 
   protected getDefaultTheme(): TextareaTheme {
     return {
@@ -40,11 +40,11 @@ export class TextareaStyle extends BaseStyle<TextareaTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const TEXTAREA_STYLE_PROVIDER: Provider = {
   provide: TEXTAREA_STYLE,
   useClass: TextareaStyle,
-}
+};

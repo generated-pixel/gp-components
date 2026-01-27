@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type StepperTheme = ComponentStyleConfig
+export type StepperTheme = ComponentStyleConfig;
 
-export const STEPPER_STYLE = new InjectionToken<BaseStyle<StepperTheme>>('STEPPER_STYLE')
+export const STEPPER_STYLE = new InjectionToken<BaseStyle<StepperTheme>>('STEPPER_STYLE');
 
 @Injectable()
 export class StepperStyle extends BaseStyle<StepperTheme> {
-  protected readonly componentName = 'gp-stepper'
+  protected readonly componentName = 'gp-stepper';
 
   protected getDefaultTheme(): StepperTheme {
     return {
@@ -40,11 +40,11 @@ export class StepperStyle extends BaseStyle<StepperTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const STEPPER_STYLE_PROVIDER: Provider = {
   provide: STEPPER_STYLE,
   useClass: StepperStyle,
-}
+};

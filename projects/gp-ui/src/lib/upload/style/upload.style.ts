@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type UploadTheme = ComponentStyleConfig
+export type UploadTheme = ComponentStyleConfig;
 
-export const UPLOAD_STYLE = new InjectionToken<BaseStyle<UploadTheme>>('UPLOAD_STYLE')
+export const UPLOAD_STYLE = new InjectionToken<BaseStyle<UploadTheme>>('UPLOAD_STYLE');
 
 @Injectable()
 export class UploadStyle extends BaseStyle<UploadTheme> {
-  protected readonly componentName = 'gp-upload'
+  protected readonly componentName = 'gp-upload';
 
   protected getDefaultTheme(): UploadTheme {
     return {
@@ -40,11 +40,11 @@ export class UploadStyle extends BaseStyle<UploadTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const UPLOAD_STYLE_PROVIDER: Provider = {
   provide: UPLOAD_STYLE,
   useClass: UploadStyle,
-}
+};

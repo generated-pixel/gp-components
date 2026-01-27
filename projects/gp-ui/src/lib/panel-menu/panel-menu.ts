@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core'
-import { Base } from '../base/base'
-import { PANEL_MENU_STYLE, PANEL_MENU_STYLE_PROVIDER } from './style/panel-menu.style'
+import { Component, inject } from '@angular/core';
+import { Base } from '../base/base';
+import { PANEL_MENU_STYLE, PANEL_MENU_STYLE_PROVIDER } from './style/panel-menu.style';
 
 @Component({
   selector: 'gp-panel-menu',
@@ -9,9 +9,9 @@ import { PANEL_MENU_STYLE, PANEL_MENU_STYLE_PROVIDER } from './style/panel-menu.
   providers: [PANEL_MENU_STYLE_PROVIDER],
 })
 export class PanelMenu extends Base {
-  private readonly style = inject(PANEL_MENU_STYLE)
+  private readonly style = inject(PANEL_MENU_STYLE);
 
   onInit(): void {
-    this.attachStyle(this.style)
+    this.attachStyle(this.style);
   }
 }

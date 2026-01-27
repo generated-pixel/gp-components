@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type TooltipTheme = ComponentStyleConfig
+export type TooltipTheme = ComponentStyleConfig;
 
-export const TOOLTIP_STYLE = new InjectionToken<BaseStyle<TooltipTheme>>('TOOLTIP_STYLE')
+export const TOOLTIP_STYLE = new InjectionToken<BaseStyle<TooltipTheme>>('TOOLTIP_STYLE');
 
 @Injectable()
 export class TooltipStyle extends BaseStyle<TooltipTheme> {
-  protected readonly componentName = 'gp-tooltip'
+  protected readonly componentName = 'gp-tooltip';
 
   protected getDefaultTheme(): TooltipTheme {
     return {
@@ -57,11 +57,11 @@ export class TooltipStyle extends BaseStyle<TooltipTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const TOOLTIP_STYLE_PROVIDER: Provider = {
   provide: TOOLTIP_STYLE,
   useClass: TooltipStyle,
-}
+};

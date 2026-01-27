@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core'
-import { Base } from '../base/base'
-import { BREADCRUMB_STYLE, BREADCRUMB_STYLE_PROVIDER } from './style/breadcrumb.style'
+import { Component, inject } from '@angular/core';
+import { Base } from '../base/base';
+import { BREADCRUMB_STYLE, BREADCRUMB_STYLE_PROVIDER } from './style/breadcrumb.style';
 
 @Component({
   selector: 'gp-breadcrumb',
@@ -9,9 +9,9 @@ import { BREADCRUMB_STYLE, BREADCRUMB_STYLE_PROVIDER } from './style/breadcrumb.
   providers: [BREADCRUMB_STYLE_PROVIDER],
 })
 export class Breadcrumb extends Base {
-  private readonly style = inject(BREADCRUMB_STYLE)
+  private readonly style = inject(BREADCRUMB_STYLE);
 
   onInit(): void {
-    this.attachStyle(this.style)
+    this.attachStyle(this.style);
   }
 }

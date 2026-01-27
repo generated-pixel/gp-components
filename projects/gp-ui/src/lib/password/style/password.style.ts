@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type PasswordTheme = ComponentStyleConfig
+export type PasswordTheme = ComponentStyleConfig;
 
-export const PASSWORD_STYLE = new InjectionToken<BaseStyle<PasswordTheme>>('PASSWORD_STYLE')
+export const PASSWORD_STYLE = new InjectionToken<BaseStyle<PasswordTheme>>('PASSWORD_STYLE');
 
 @Injectable()
 export class PasswordStyle extends BaseStyle<PasswordTheme> {
-  protected readonly componentName = 'gp-password'
+  protected readonly componentName = 'gp-password';
 
   protected getDefaultTheme(): PasswordTheme {
     return {
@@ -48,11 +48,11 @@ export class PasswordStyle extends BaseStyle<PasswordTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const PASSWORD_STYLE_PROVIDER: Provider = {
   provide: PASSWORD_STYLE,
   useClass: PasswordStyle,
-}
+};

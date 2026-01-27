@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type DividerTheme = ComponentStyleConfig
+export type DividerTheme = ComponentStyleConfig;
 
-export const DIVIDER_STYLE = new InjectionToken<BaseStyle<DividerTheme>>('DIVIDER_STYLE')
+export const DIVIDER_STYLE = new InjectionToken<BaseStyle<DividerTheme>>('DIVIDER_STYLE');
 
 @Injectable()
 export class DividerStyle extends BaseStyle<DividerTheme> {
-  protected readonly componentName = 'gp-divider'
+  protected readonly componentName = 'gp-divider';
 
   protected getDefaultTheme(): DividerTheme {
     return {
@@ -40,11 +40,11 @@ export class DividerStyle extends BaseStyle<DividerTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const DIVIDER_STYLE_PROVIDER: Provider = {
   provide: DIVIDER_STYLE,
   useClass: DividerStyle,
-}
+};

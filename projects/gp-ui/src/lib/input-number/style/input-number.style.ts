@@ -1,13 +1,15 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type InputNumberTheme = ComponentStyleConfig
+export type InputNumberTheme = ComponentStyleConfig;
 
-export const INPUT_NUMBER_STYLE = new InjectionToken<BaseStyle<InputNumberTheme>>('INPUT_NUMBER_STYLE')
+export const INPUT_NUMBER_STYLE = new InjectionToken<BaseStyle<InputNumberTheme>>(
+  'INPUT_NUMBER_STYLE',
+);
 
 @Injectable()
 export class InputNumberStyle extends BaseStyle<InputNumberTheme> {
-  protected readonly componentName = 'gp-input-number'
+  protected readonly componentName = 'gp-input-number';
 
   protected getDefaultTheme(): InputNumberTheme {
     return {
@@ -40,11 +42,11 @@ export class InputNumberStyle extends BaseStyle<InputNumberTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const INPUT_NUMBER_STYLE_PROVIDER: Provider = {
   provide: INPUT_NUMBER_STYLE,
   useClass: InputNumberStyle,
-}
+};

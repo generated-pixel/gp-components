@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type InputOtpTheme = ComponentStyleConfig
+export type InputOtpTheme = ComponentStyleConfig;
 
-export const INPUT_OTP_STYLE = new InjectionToken<BaseStyle<InputOtpTheme>>('INPUT_OTP_STYLE')
+export const INPUT_OTP_STYLE = new InjectionToken<BaseStyle<InputOtpTheme>>('INPUT_OTP_STYLE');
 
 @Injectable()
 export class InputOtpStyle extends BaseStyle<InputOtpTheme> {
-  protected readonly componentName = 'gp-input-otp'
+  protected readonly componentName = 'gp-input-otp';
 
   protected getDefaultTheme(): InputOtpTheme {
     return {
@@ -40,11 +40,11 @@ export class InputOtpStyle extends BaseStyle<InputOtpTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const INPUT_OTP_STYLE_PROVIDER: Provider = {
   provide: INPUT_OTP_STYLE,
   useClass: InputOtpStyle,
-}
+};

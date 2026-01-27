@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type LabelTheme = ComponentStyleConfig
+export type LabelTheme = ComponentStyleConfig;
 
-export const LABEL_STYLE = new InjectionToken<BaseStyle<LabelTheme>>('LABEL_STYLE')
+export const LABEL_STYLE = new InjectionToken<BaseStyle<LabelTheme>>('LABEL_STYLE');
 
 @Injectable()
 export class LabelStyle extends BaseStyle<LabelTheme> {
-  protected readonly componentName = 'gp-label'
+  protected readonly componentName = 'gp-label';
 
   protected getDefaultTheme(): LabelTheme {
     return {
@@ -39,11 +39,11 @@ export class LabelStyle extends BaseStyle<LabelTheme> {
           font-weight: inherit;
         }
       `,
-    }
+    };
   }
 }
 
 export const LABEL_STYLE_PROVIDER: Provider = {
   provide: LABEL_STYLE,
   useClass: LabelStyle,
-}
+};

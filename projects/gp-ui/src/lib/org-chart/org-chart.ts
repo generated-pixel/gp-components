@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core'
-import { Base } from '../base/base'
-import { ORG_CHART_STYLE, ORG_CHART_STYLE_PROVIDER } from './style/org-chart.style'
+import { Component, inject } from '@angular/core';
+import { Base } from '../base/base';
+import { ORG_CHART_STYLE, ORG_CHART_STYLE_PROVIDER } from './style/org-chart.style';
 
 @Component({
   selector: 'gp-org-chart',
@@ -9,9 +9,9 @@ import { ORG_CHART_STYLE, ORG_CHART_STYLE_PROVIDER } from './style/org-chart.sty
   providers: [ORG_CHART_STYLE_PROVIDER],
 })
 export class OrgChart extends Base {
-  private readonly style = inject(ORG_CHART_STYLE)
+  private readonly style = inject(ORG_CHART_STYLE);
 
   onInit(): void {
-    this.attachStyle(this.style)
+    this.attachStyle(this.style);
   }
 }

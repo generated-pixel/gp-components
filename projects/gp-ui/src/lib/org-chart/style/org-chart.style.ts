@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type OrgChartTheme = ComponentStyleConfig
+export type OrgChartTheme = ComponentStyleConfig;
 
-export const ORG_CHART_STYLE = new InjectionToken<BaseStyle<OrgChartTheme>>('ORG_CHART_STYLE')
+export const ORG_CHART_STYLE = new InjectionToken<BaseStyle<OrgChartTheme>>('ORG_CHART_STYLE');
 
 @Injectable()
 export class OrgChartStyle extends BaseStyle<OrgChartTheme> {
-  protected readonly componentName = 'gp-org-chart'
+  protected readonly componentName = 'gp-org-chart';
 
   protected getDefaultTheme(): OrgChartTheme {
     return {
@@ -40,11 +40,11 @@ export class OrgChartStyle extends BaseStyle<OrgChartTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const ORG_CHART_STYLE_PROVIDER: Provider = {
   provide: ORG_CHART_STYLE,
   useClass: OrgChartStyle,
-}
+};

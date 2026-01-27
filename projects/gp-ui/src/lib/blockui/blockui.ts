@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core'
-import { Base } from '../base/base'
-import { BLOCKUI_STYLE, BLOCKUI_STYLE_PROVIDER } from './style/blockui.style'
+import { Component, inject } from '@angular/core';
+import { Base } from '../base/base';
+import { BLOCKUI_STYLE, BLOCKUI_STYLE_PROVIDER } from './style/blockui.style';
 
 @Component({
   selector: 'gp-blockui',
@@ -10,9 +10,9 @@ import { BLOCKUI_STYLE, BLOCKUI_STYLE_PROVIDER } from './style/blockui.style'
   providers: [BLOCKUI_STYLE_PROVIDER],
 })
 export class Blockui extends Base {
-  private readonly style = inject(BLOCKUI_STYLE)
+  private readonly style = inject(BLOCKUI_STYLE);
 
   onInit(): void {
-    this.attachStyle(this.style)
+    this.attachStyle(this.style);
   }
 }

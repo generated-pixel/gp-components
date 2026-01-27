@@ -1,13 +1,15 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type RadioButtonTheme = ComponentStyleConfig
+export type RadioButtonTheme = ComponentStyleConfig;
 
-export const RADIO_BUTTON_STYLE = new InjectionToken<BaseStyle<RadioButtonTheme>>('RADIO_BUTTON_STYLE')
+export const RADIO_BUTTON_STYLE = new InjectionToken<BaseStyle<RadioButtonTheme>>(
+  'RADIO_BUTTON_STYLE',
+);
 
 @Injectable()
 export class RadioButtonStyle extends BaseStyle<RadioButtonTheme> {
-  protected readonly componentName = 'gp-radio-button'
+  protected readonly componentName = 'gp-radio-button';
 
   protected getDefaultTheme(): RadioButtonTheme {
     return {
@@ -40,11 +42,11 @@ export class RadioButtonStyle extends BaseStyle<RadioButtonTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const RADIO_BUTTON_STYLE_PROVIDER: Provider = {
   provide: RADIO_BUTTON_STYLE,
   useClass: RadioButtonStyle,
-}
+};

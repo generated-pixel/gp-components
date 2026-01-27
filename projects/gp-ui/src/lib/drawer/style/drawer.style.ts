@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type DrawerTheme = ComponentStyleConfig
+export type DrawerTheme = ComponentStyleConfig;
 
-export const DRAWER_STYLE = new InjectionToken<BaseStyle<DrawerTheme>>('DRAWER_STYLE')
+export const DRAWER_STYLE = new InjectionToken<BaseStyle<DrawerTheme>>('DRAWER_STYLE');
 
 @Injectable()
 export class DrawerStyle extends BaseStyle<DrawerTheme> {
-  protected readonly componentName = 'gp-drawer'
+  protected readonly componentName = 'gp-drawer';
 
   protected getDefaultTheme(): DrawerTheme {
     return {
@@ -40,11 +40,11 @@ export class DrawerStyle extends BaseStyle<DrawerTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const DRAWER_STYLE_PROVIDER: Provider = {
   provide: DRAWER_STYLE,
   useClass: DrawerStyle,
-}
+};

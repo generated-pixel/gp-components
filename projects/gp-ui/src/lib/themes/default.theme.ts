@@ -1,18 +1,18 @@
-import { ComponentThemeOverrides } from '../base/style/base.style'
+import { ComponentThemeOverrides } from '../base/style/base.style';
 import {
   GpComponentThemeDefinition,
   GpThemeDefinition,
   GpThemePrimitiveDefinition,
   GpThemeSemanticDefinition,
-} from '../interfaces'
-import { resolveThemeComponents } from './theme-definition.utils'
-import { GP_BASE_THEME_PRIMITIVES } from './palette'
+} from '../interfaces';
+import { resolveThemeComponents } from './theme-definition.utils';
+import { GP_BASE_THEME_PRIMITIVES } from './palette';
 
-const P = GP_BASE_THEME_PRIMITIVES
+const P = GP_BASE_THEME_PRIMITIVES;
 
 const GP_DEFAULT_THEME_PRIMITIVES: GpThemePrimitiveDefinition = {
   ...GP_BASE_THEME_PRIMITIVES,
-}
+};
 
 const GP_DEFAULT_THEME_SEMANTIC: GpThemeSemanticDefinition = {
   colorSchema: {
@@ -680,13 +680,15 @@ const GP_DEFAULT_THEME_SEMANTIC: GpThemeSemanticDefinition = {
       },
     },
   },
-}
+};
 
 // Default-friendly theme tuned for light UI surfaces.
 export const GP_DEFAULT_THEME_DEFINITION: GpThemeDefinition = {
   name: 'Default',
   primitives: GP_DEFAULT_THEME_PRIMITIVES,
   semantic: GP_DEFAULT_THEME_SEMANTIC,
-}
+};
 
-export const GP_DEFAULT_THEME: ComponentThemeOverrides = resolveThemeComponents(GP_DEFAULT_THEME_DEFINITION)
+export const GP_DEFAULT_THEME: ComponentThemeOverrides = resolveThemeComponents(
+  GP_DEFAULT_THEME_DEFINITION,
+);

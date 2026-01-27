@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type ChipTheme = ComponentStyleConfig
+export type ChipTheme = ComponentStyleConfig;
 
-export const CHIP_STYLE = new InjectionToken<BaseStyle<ChipTheme>>('CHIP_STYLE')
+export const CHIP_STYLE = new InjectionToken<BaseStyle<ChipTheme>>('CHIP_STYLE');
 
 @Injectable()
 export class ChipStyle extends BaseStyle<ChipTheme> {
-  protected readonly componentName = 'gp-chip'
+  protected readonly componentName = 'gp-chip';
 
   protected getDefaultTheme(): ChipTheme {
     return {
@@ -40,11 +40,11 @@ export class ChipStyle extends BaseStyle<ChipTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const CHIP_STYLE_PROVIDER: Provider = {
   provide: CHIP_STYLE,
   useClass: ChipStyle,
-}
+};

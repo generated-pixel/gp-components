@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core'
-import { Base } from '../base/base'
-import { DRAWER_STYLE, DRAWER_STYLE_PROVIDER } from './style/drawer.style'
+import { Component, inject } from '@angular/core';
+import { Base } from '../base/base';
+import { DRAWER_STYLE, DRAWER_STYLE_PROVIDER } from './style/drawer.style';
 
 @Component({
   selector: 'gp-drawer',
@@ -9,9 +9,9 @@ import { DRAWER_STYLE, DRAWER_STYLE_PROVIDER } from './style/drawer.style'
   providers: [DRAWER_STYLE_PROVIDER],
 })
 export class Drawer extends Base {
-  private readonly style = inject(DRAWER_STYLE)
+  private readonly style = inject(DRAWER_STYLE);
 
   onInit(): void {
-    this.attachStyle(this.style)
+    this.attachStyle(this.style);
   }
 }

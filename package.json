@@ -16,6 +16,18 @@
     "lib:build": "ng build gp-ui --configuration=production && node tools/bundle-css.js",
     "lib:watch": "ng build gp-ui --watch --configuration=development"
   },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  },
   "dependencies": {
     "@angular/common": "^21.0.6",
     "@angular/compiler": "^21.0.6",

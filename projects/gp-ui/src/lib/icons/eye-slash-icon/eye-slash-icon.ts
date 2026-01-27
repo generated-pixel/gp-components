@@ -1,7 +1,7 @@
-import { Component, inject } from '@angular/core'
-import { BaseIcon } from '../base-icon/base-icon'
-import { BASE_ICON_STYLE_PROVIDER } from '../base-icon/style/base-icon.style'
-import { EYE_SLASH_ICON_STYLE, EYE_SLASH_ICON_STYLE_PROVIDER } from './style/eye-slash-icon.style'
+import { Component, inject } from '@angular/core';
+import { BaseIcon } from '../base-icon/base-icon';
+import { BASE_ICON_STYLE_PROVIDER } from '../base-icon/style/base-icon.style';
+import { EYE_SLASH_ICON_STYLE, EYE_SLASH_ICON_STYLE_PROVIDER } from './style/eye-slash-icon.style';
 
 @Component({
   selector: '[data-gp-icon="eye-slash"]',
@@ -17,10 +17,10 @@ import { EYE_SLASH_ICON_STYLE, EYE_SLASH_ICON_STYLE_PROVIDER } from './style/eye
   providers: [BASE_ICON_STYLE_PROVIDER, EYE_SLASH_ICON_STYLE_PROVIDER],
 })
 export class EyeSlashIcon extends BaseIcon {
-  private readonly eyeSlashStyle = inject(EYE_SLASH_ICON_STYLE)
+  private readonly eyeSlashStyle = inject(EYE_SLASH_ICON_STYLE);
 
   override onInit(): void {
-    super.onInit()
-    this.attachStyle(this.eyeSlashStyle)
+    super.onInit();
+    this.attachStyle(this.eyeSlashStyle);
   }
 }

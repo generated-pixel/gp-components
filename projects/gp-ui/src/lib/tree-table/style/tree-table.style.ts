@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type TreeTableTheme = ComponentStyleConfig
+export type TreeTableTheme = ComponentStyleConfig;
 
-export const TREE_TABLE_STYLE = new InjectionToken<BaseStyle<TreeTableTheme>>('TREE_TABLE_STYLE')
+export const TREE_TABLE_STYLE = new InjectionToken<BaseStyle<TreeTableTheme>>('TREE_TABLE_STYLE');
 
 @Injectable()
 export class TreeTableStyle extends BaseStyle<TreeTableTheme> {
-  protected readonly componentName = 'gp-tree-table'
+  protected readonly componentName = 'gp-tree-table';
 
   protected getDefaultTheme(): TreeTableTheme {
     return {
@@ -40,11 +40,11 @@ export class TreeTableStyle extends BaseStyle<TreeTableTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const TREE_TABLE_STYLE_PROVIDER: Provider = {
   provide: TREE_TABLE_STYLE,
   useClass: TreeTableStyle,
-}
+};

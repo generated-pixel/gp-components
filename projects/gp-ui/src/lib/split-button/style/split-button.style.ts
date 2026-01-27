@@ -1,13 +1,15 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type SplitButtonTheme = ComponentStyleConfig
+export type SplitButtonTheme = ComponentStyleConfig;
 
-export const SPLIT_BUTTON_STYLE = new InjectionToken<BaseStyle<SplitButtonTheme>>('SPLIT_BUTTON_STYLE')
+export const SPLIT_BUTTON_STYLE = new InjectionToken<BaseStyle<SplitButtonTheme>>(
+  'SPLIT_BUTTON_STYLE',
+);
 
 @Injectable()
 export class SplitButtonStyle extends BaseStyle<SplitButtonTheme> {
-  protected readonly componentName = 'gp-split-button'
+  protected readonly componentName = 'gp-split-button';
 
   protected getDefaultTheme(): SplitButtonTheme {
     return {
@@ -40,11 +42,11 @@ export class SplitButtonStyle extends BaseStyle<SplitButtonTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const SPLIT_BUTTON_STYLE_PROVIDER: Provider = {
   provide: SPLIT_BUTTON_STYLE,
   useClass: SplitButtonStyle,
-}
+};

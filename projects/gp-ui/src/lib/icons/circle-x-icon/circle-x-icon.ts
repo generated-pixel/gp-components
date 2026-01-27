@@ -1,7 +1,7 @@
-import { Component, inject } from '@angular/core'
-import { BaseIcon } from '../base-icon/base-icon'
-import { BASE_ICON_STYLE_PROVIDER } from '../base-icon/style/base-icon.style'
-import { CIRCLE_X_ICON_STYLE, CIRCLE_X_ICON_STYLE_PROVIDER } from './style/circle-x-icon.style'
+import { Component, inject } from '@angular/core';
+import { BaseIcon } from '../base-icon/base-icon';
+import { BASE_ICON_STYLE_PROVIDER } from '../base-icon/style/base-icon.style';
+import { CIRCLE_X_ICON_STYLE, CIRCLE_X_ICON_STYLE_PROVIDER } from './style/circle-x-icon.style';
 
 @Component({
   selector: '[data-gp-icon="circle-x"]',
@@ -16,10 +16,10 @@ import { CIRCLE_X_ICON_STYLE, CIRCLE_X_ICON_STYLE_PROVIDER } from './style/circl
   providers: [BASE_ICON_STYLE_PROVIDER, CIRCLE_X_ICON_STYLE_PROVIDER],
 })
 export class CircleXIcon extends BaseIcon {
-  private readonly circleStyle = inject(CIRCLE_X_ICON_STYLE)
+  private readonly circleStyle = inject(CIRCLE_X_ICON_STYLE);
 
   override onInit(): void {
-    super.onInit()
-    this.attachStyle(this.circleStyle)
+    super.onInit();
+    this.attachStyle(this.circleStyle);
   }
 }

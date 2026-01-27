@@ -1,5 +1,5 @@
-import { StyleValue } from '../base/style/base.style'
+import { StyleValue } from '../base/style/base.style';
 
-export type GpThemePrimitiveScale = Record<string, StyleValue>
+export type GpThemePrimitiveScale = Record<string, StyleValue>;
 
-export type GpThemePrimitiveDefinition = Record<string, GpThemePrimitiveScale | StyleValue>
+export type GpThemePrimitiveDefinition = Record<string, GpThemePrimitiveScale | StyleValue>;

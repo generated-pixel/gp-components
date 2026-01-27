@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type ToastTheme = ComponentStyleConfig
+export type ToastTheme = ComponentStyleConfig;
 
-export const TOAST_STYLE = new InjectionToken<BaseStyle<ToastTheme>>('TOAST_STYLE')
+export const TOAST_STYLE = new InjectionToken<BaseStyle<ToastTheme>>('TOAST_STYLE');
 
 @Injectable()
 export class ToastStyle extends BaseStyle<ToastTheme> {
-  protected readonly componentName = 'gp-toast'
+  protected readonly componentName = 'gp-toast';
 
   protected getDefaultTheme(): ToastTheme {
     return {
@@ -40,11 +40,11 @@ export class ToastStyle extends BaseStyle<ToastTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const TOAST_STYLE_PROVIDER: Provider = {
   provide: TOAST_STYLE,
   useClass: ToastStyle,
-}
+};

@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type PaginatorTheme = ComponentStyleConfig
+export type PaginatorTheme = ComponentStyleConfig;
 
-export const PAGINATOR_STYLE = new InjectionToken<BaseStyle<PaginatorTheme>>('PAGINATOR_STYLE')
+export const PAGINATOR_STYLE = new InjectionToken<BaseStyle<PaginatorTheme>>('PAGINATOR_STYLE');
 
 @Injectable()
 export class PaginatorStyle extends BaseStyle<PaginatorTheme> {
-  protected readonly componentName = 'gp-paginator'
+  protected readonly componentName = 'gp-paginator';
 
   protected getDefaultTheme(): PaginatorTheme {
     return {
@@ -40,11 +40,11 @@ export class PaginatorStyle extends BaseStyle<PaginatorTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const PAGINATOR_STYLE_PROVIDER: Provider = {
   provide: PAGINATOR_STYLE,
   useClass: PaginatorStyle,
-}
+};

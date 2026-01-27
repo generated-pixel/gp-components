@@ -1,13 +1,15 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type ProgressSpinnerTheme = ComponentStyleConfig
+export type ProgressSpinnerTheme = ComponentStyleConfig;
 
-export const PROGRESS_SPINNER_STYLE = new InjectionToken<BaseStyle<ProgressSpinnerTheme>>('PROGRESS_SPINNER_STYLE')
+export const PROGRESS_SPINNER_STYLE = new InjectionToken<BaseStyle<ProgressSpinnerTheme>>(
+  'PROGRESS_SPINNER_STYLE',
+);
 
 @Injectable()
 export class ProgressSpinnerStyle extends BaseStyle<ProgressSpinnerTheme> {
-  protected readonly componentName = 'gp-progress-spinner'
+  protected readonly componentName = 'gp-progress-spinner';
 
   protected getDefaultTheme(): ProgressSpinnerTheme {
     return {
@@ -40,11 +42,11 @@ export class ProgressSpinnerStyle extends BaseStyle<ProgressSpinnerTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const PROGRESS_SPINNER_STYLE_PROVIDER: Provider = {
   provide: PROGRESS_SPINNER_STYLE,
   useClass: ProgressSpinnerStyle,
-}
+};

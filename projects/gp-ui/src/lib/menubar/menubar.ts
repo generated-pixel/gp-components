@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core'
-import { Base } from '../base/base'
-import { MENUBAR_STYLE, MENUBAR_STYLE_PROVIDER } from './style/menubar.style'
+import { Component, inject } from '@angular/core';
+import { Base } from '../base/base';
+import { MENUBAR_STYLE, MENUBAR_STYLE_PROVIDER } from './style/menubar.style';
 
 @Component({
   selector: 'gp-menubar',
@@ -9,9 +9,9 @@ import { MENUBAR_STYLE, MENUBAR_STYLE_PROVIDER } from './style/menubar.style'
   providers: [MENUBAR_STYLE_PROVIDER],
 })
 export class Menubar extends Base {
-  private readonly style = inject(MENUBAR_STYLE)
+  private readonly style = inject(MENUBAR_STYLE);
 
   onInit(): void {
-    this.attachStyle(this.style)
+    this.attachStyle(this.style);
   }
 }

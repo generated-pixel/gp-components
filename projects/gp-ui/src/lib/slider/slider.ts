@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core'
-import { BaseInput } from '../base-input/base-input'
-import { SLIDER_STYLE, SLIDER_STYLE_PROVIDER } from './style/slider.style'
+import { Component, inject } from '@angular/core';
+import { BaseInput } from '../base-input/base-input';
+import { SLIDER_STYLE, SLIDER_STYLE_PROVIDER } from './style/slider.style';
 
 @Component({
   selector: 'gp-slider',
@@ -9,9 +9,9 @@ import { SLIDER_STYLE, SLIDER_STYLE_PROVIDER } from './style/slider.style'
   providers: [SLIDER_STYLE_PROVIDER],
 })
 export class Slider extends BaseInput {
-  private readonly style = inject(SLIDER_STYLE)
+  private readonly style = inject(SLIDER_STYLE);
 
   onInit(): void {
-    this.attachStyle(this.style)
+    this.attachStyle(this.style);
   }
 }

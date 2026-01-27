@@ -1,13 +1,15 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type ConfirmPopupTheme = ComponentStyleConfig
+export type ConfirmPopupTheme = ComponentStyleConfig;
 
-export const CONFIRM_POPUP_STYLE = new InjectionToken<BaseStyle<ConfirmPopupTheme>>('CONFIRM_POPUP_STYLE')
+export const CONFIRM_POPUP_STYLE = new InjectionToken<BaseStyle<ConfirmPopupTheme>>(
+  'CONFIRM_POPUP_STYLE',
+);
 
 @Injectable()
 export class ConfirmPopupStyle extends BaseStyle<ConfirmPopupTheme> {
-  protected readonly componentName = 'gp-confirm-popup'
+  protected readonly componentName = 'gp-confirm-popup';
 
   protected getDefaultTheme(): ConfirmPopupTheme {
     return {
@@ -40,11 +42,11 @@ export class ConfirmPopupStyle extends BaseStyle<ConfirmPopupTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const CONFIRM_POPUP_STYLE_PROVIDER: Provider = {
   provide: CONFIRM_POPUP_STYLE,
   useClass: ConfirmPopupStyle,
-}
+};

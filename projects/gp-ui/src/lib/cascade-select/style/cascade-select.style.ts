@@ -1,13 +1,15 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type CascadeSelectTheme = ComponentStyleConfig
+export type CascadeSelectTheme = ComponentStyleConfig;
 
-export const CASCADE_SELECT_STYLE = new InjectionToken<BaseStyle<CascadeSelectTheme>>('CASCADE_SELECT_STYLE')
+export const CASCADE_SELECT_STYLE = new InjectionToken<BaseStyle<CascadeSelectTheme>>(
+  'CASCADE_SELECT_STYLE',
+);
 
 @Injectable()
 export class CascadeSelectStyle extends BaseStyle<CascadeSelectTheme> {
-  protected readonly componentName = 'gp-cascade-select'
+  protected readonly componentName = 'gp-cascade-select';
 
   protected getDefaultTheme(): CascadeSelectTheme {
     return {
@@ -40,11 +42,11 @@ export class CascadeSelectStyle extends BaseStyle<CascadeSelectTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const CASCADE_SELECT_STYLE_PROVIDER: Provider = {
   provide: CASCADE_SELECT_STYLE,
   useClass: CascadeSelectStyle,
-}
+};

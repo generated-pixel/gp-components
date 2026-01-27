@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type TimelineTheme = ComponentStyleConfig
+export type TimelineTheme = ComponentStyleConfig;
 
-export const TIMELINE_STYLE = new InjectionToken<BaseStyle<TimelineTheme>>('TIMELINE_STYLE')
+export const TIMELINE_STYLE = new InjectionToken<BaseStyle<TimelineTheme>>('TIMELINE_STYLE');
 
 @Injectable()
 export class TimelineStyle extends BaseStyle<TimelineTheme> {
-  protected readonly componentName = 'gp-timeline'
+  protected readonly componentName = 'gp-timeline';
 
   protected getDefaultTheme(): TimelineTheme {
     return {
@@ -40,11 +40,11 @@ export class TimelineStyle extends BaseStyle<TimelineTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const TIMELINE_STYLE_PROVIDER: Provider = {
   provide: TIMELINE_STYLE,
   useClass: TimelineStyle,
-}
+};

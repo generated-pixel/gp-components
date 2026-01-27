@@ -1,13 +1,15 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type ThemeSwitcherTheme = ComponentStyleConfig
+export type ThemeSwitcherTheme = ComponentStyleConfig;
 
-export const THEME_SWITCHER_STYLE = new InjectionToken<BaseStyle<ThemeSwitcherTheme>>('THEME_SWITCHER_STYLE')
+export const THEME_SWITCHER_STYLE = new InjectionToken<BaseStyle<ThemeSwitcherTheme>>(
+  'THEME_SWITCHER_STYLE',
+);
 
 @Injectable()
 export class ThemeSwitcherStyle extends BaseStyle<ThemeSwitcherTheme> {
-  protected readonly componentName = 'gp-theme-switcher'
+  protected readonly componentName = 'gp-theme-switcher';
 
   protected getDefaultTheme(): ThemeSwitcherTheme {
     return {
@@ -24,7 +26,8 @@ export class ThemeSwitcherStyle extends BaseStyle<ThemeSwitcherTheme> {
         selectColor: 'var(--gp-theme-switcher-theme-select-color, #111827)',
         selectRadius: 'var(--gp-theme-switcher-theme-select-radius, 0.375rem)',
         selectPadding: 'var(--gp-theme-switcher-theme-select-padding, 0.375rem 0.5rem)',
-        selectFocusRing: 'var(--gp-theme-switcher-theme-select-focus-ring, 0 0 0 2px rgba(99, 102, 241, 0.35))',
+        selectFocusRing:
+          'var(--gp-theme-switcher-theme-select-focus-ring, 0 0 0 2px rgba(99, 102, 241, 0.35))',
         selectFocusBorder: 'var(--gp-theme-switcher-theme-select-focus-border, #6366f1)',
       },
       css: `
@@ -86,11 +89,11 @@ export class ThemeSwitcherStyle extends BaseStyle<ThemeSwitcherTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const THEME_SWITCHER_STYLE_PROVIDER: Provider = {
   provide: THEME_SWITCHER_STYLE,
   useClass: ThemeSwitcherStyle,
-}
+};

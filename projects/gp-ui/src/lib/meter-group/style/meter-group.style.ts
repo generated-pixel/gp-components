@@ -1,13 +1,15 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type MeterGroupTheme = ComponentStyleConfig
+export type MeterGroupTheme = ComponentStyleConfig;
 
-export const METER_GROUP_STYLE = new InjectionToken<BaseStyle<MeterGroupTheme>>('METER_GROUP_STYLE')
+export const METER_GROUP_STYLE = new InjectionToken<BaseStyle<MeterGroupTheme>>(
+  'METER_GROUP_STYLE',
+);
 
 @Injectable()
 export class MeterGroupStyle extends BaseStyle<MeterGroupTheme> {
-  protected readonly componentName = 'gp-meter-group'
+  protected readonly componentName = 'gp-meter-group';
 
   protected getDefaultTheme(): MeterGroupTheme {
     return {
@@ -40,11 +42,11 @@ export class MeterGroupStyle extends BaseStyle<MeterGroupTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const METER_GROUP_STYLE_PROVIDER: Provider = {
   provide: METER_GROUP_STYLE,
   useClass: MeterGroupStyle,
-}
+};

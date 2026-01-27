@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type ListboxTheme = ComponentStyleConfig
+export type ListboxTheme = ComponentStyleConfig;
 
-export const LISTBOX_STYLE = new InjectionToken<BaseStyle<ListboxTheme>>('LISTBOX_STYLE')
+export const LISTBOX_STYLE = new InjectionToken<BaseStyle<ListboxTheme>>('LISTBOX_STYLE');
 
 @Injectable()
 export class ListboxStyle extends BaseStyle<ListboxTheme> {
-  protected readonly componentName = 'gp-listbox'
+  protected readonly componentName = 'gp-listbox';
 
   protected getDefaultTheme(): ListboxTheme {
     return {
@@ -40,11 +40,11 @@ export class ListboxStyle extends BaseStyle<ListboxTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const LISTBOX_STYLE_PROVIDER: Provider = {
   provide: LISTBOX_STYLE,
   useClass: ListboxStyle,
-}
+};

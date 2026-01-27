@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type CheckboxTheme = ComponentStyleConfig
+export type CheckboxTheme = ComponentStyleConfig;
 
-export const CHECKBOX_STYLE = new InjectionToken<BaseStyle<CheckboxTheme>>('CHECKBOX_STYLE')
+export const CHECKBOX_STYLE = new InjectionToken<BaseStyle<CheckboxTheme>>('CHECKBOX_STYLE');
 
 @Injectable()
 export class CheckboxStyle extends BaseStyle<CheckboxTheme> {
-  protected readonly componentName = 'gp-checkbox'
+  protected readonly componentName = 'gp-checkbox';
 
   protected getDefaultTheme(): CheckboxTheme {
     return {
@@ -40,11 +40,11 @@ export class CheckboxStyle extends BaseStyle<CheckboxTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const CHECKBOX_STYLE_PROVIDER: Provider = {
   provide: CHECKBOX_STYLE,
   useClass: CheckboxStyle,
-}
+};

@@ -1,4 +1,4 @@
-import { GpThemePrimitiveDefinition } from '../interfaces'
+import { GpThemePrimitiveDefinition } from '../interfaces';
 
 //Shared base palette for all themes (Tailwind-inspired 50-950 scale)
 export const GP_BASE_THEME_PRIMITIVES: GpThemePrimitiveDefinition = {
@@ -288,4 +288,4 @@ export const GP_BASE_THEME_PRIMITIVES: GpThemePrimitiveDefinition = {
     900: '#1c1917',
     950: '#0c0a09',
   },
-}
+};

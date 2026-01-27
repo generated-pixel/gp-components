@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type CardTheme = ComponentStyleConfig
+export type CardTheme = ComponentStyleConfig;
 
-export const CARD_STYLE = new InjectionToken<BaseStyle<CardTheme>>('CARD_STYLE')
+export const CARD_STYLE = new InjectionToken<BaseStyle<CardTheme>>('CARD_STYLE');
 
 @Injectable()
 export class CardStyle extends BaseStyle<CardTheme> {
-  protected readonly componentName = 'gp-card'
+  protected readonly componentName = 'gp-card';
 
   protected getDefaultTheme(): CardTheme {
     return {
@@ -40,11 +40,11 @@ export class CardStyle extends BaseStyle<CardTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const CARD_STYLE_PROVIDER: Provider = {
   provide: CARD_STYLE,
   useClass: CardStyle,
-}
+};

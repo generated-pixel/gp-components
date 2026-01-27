@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type PanelMenuTheme = ComponentStyleConfig
+export type PanelMenuTheme = ComponentStyleConfig;
 
-export const PANEL_MENU_STYLE = new InjectionToken<BaseStyle<PanelMenuTheme>>('PANEL_MENU_STYLE')
+export const PANEL_MENU_STYLE = new InjectionToken<BaseStyle<PanelMenuTheme>>('PANEL_MENU_STYLE');
 
 @Injectable()
 export class PanelMenuStyle extends BaseStyle<PanelMenuTheme> {
-  protected readonly componentName = 'gp-panel-menu'
+  protected readonly componentName = 'gp-panel-menu';
 
   protected getDefaultTheme(): PanelMenuTheme {
     return {
@@ -40,11 +40,11 @@ export class PanelMenuStyle extends BaseStyle<PanelMenuTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const PANEL_MENU_STYLE_PROVIDER: Provider = {
   provide: PANEL_MENU_STYLE,
   useClass: PanelMenuStyle,
-}
+};

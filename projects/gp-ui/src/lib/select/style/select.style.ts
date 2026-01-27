@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type SelectTheme = ComponentStyleConfig
+export type SelectTheme = ComponentStyleConfig;
 
-export const SELECT_STYLE = new InjectionToken<BaseStyle<SelectTheme>>('SELECT_STYLE')
+export const SELECT_STYLE = new InjectionToken<BaseStyle<SelectTheme>>('SELECT_STYLE');
 
 @Injectable()
 export class SelectStyle extends BaseStyle<SelectTheme> {
-  protected readonly componentName = 'gp-select'
+  protected readonly componentName = 'gp-select';
 
   protected getDefaultTheme(): SelectTheme {
     return {
@@ -40,11 +40,11 @@ export class SelectStyle extends BaseStyle<SelectTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const SELECT_STYLE_PROVIDER: Provider = {
   provide: SELECT_STYLE,
   useClass: SelectStyle,
-}
+};

@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type MessageTheme = ComponentStyleConfig
+export type MessageTheme = ComponentStyleConfig;
 
-export const MESSAGE_STYLE = new InjectionToken<BaseStyle<MessageTheme>>('MESSAGE_STYLE')
+export const MESSAGE_STYLE = new InjectionToken<BaseStyle<MessageTheme>>('MESSAGE_STYLE');
 
 @Injectable()
 export class MessageStyle extends BaseStyle<MessageTheme> {
-  protected readonly componentName = 'gp-message'
+  protected readonly componentName = 'gp-message';
 
   protected getDefaultTheme(): MessageTheme {
     return {
@@ -40,11 +40,11 @@ export class MessageStyle extends BaseStyle<MessageTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const MESSAGE_STYLE_PROVIDER: Provider = {
   provide: MESSAGE_STYLE,
   useClass: MessageStyle,
-}
+};

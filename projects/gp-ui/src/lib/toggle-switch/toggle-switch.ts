@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core'
-import { BaseEditable } from '../base-editable/base-editable'
-import { TOGGLE_SWITCH_STYLE, TOGGLE_SWITCH_STYLE_PROVIDER } from './style/toggle-switch.style'
+import { Component, inject } from '@angular/core';
+import { BaseEditable } from '../base-editable/base-editable';
+import { TOGGLE_SWITCH_STYLE, TOGGLE_SWITCH_STYLE_PROVIDER } from './style/toggle-switch.style';
 
 @Component({
   selector: 'gp-toggle-switch',
@@ -9,9 +9,9 @@ import { TOGGLE_SWITCH_STYLE, TOGGLE_SWITCH_STYLE_PROVIDER } from './style/toggl
   providers: [TOGGLE_SWITCH_STYLE_PROVIDER],
 })
 export class ToggleSwitch extends BaseEditable {
-  private readonly style = inject(TOGGLE_SWITCH_STYLE)
+  private readonly style = inject(TOGGLE_SWITCH_STYLE);
 
   onInit(): void {
-    this.attachStyle(this.style)
+    this.attachStyle(this.style);
   }
 }

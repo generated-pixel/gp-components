@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type BadgeTheme = ComponentStyleConfig
+export type BadgeTheme = ComponentStyleConfig;
 
-export const BADGE_STYLE = new InjectionToken<BaseStyle<BadgeTheme>>('BADGE_STYLE')
+export const BADGE_STYLE = new InjectionToken<BaseStyle<BadgeTheme>>('BADGE_STYLE');
 
 @Injectable()
 export class BadgeStyle extends BaseStyle<BadgeTheme> {
-  protected readonly componentName = 'gp-badge'
+  protected readonly componentName = 'gp-badge';
 
   protected getDefaultTheme(): BadgeTheme {
     return {
@@ -40,11 +40,11 @@ export class BadgeStyle extends BaseStyle<BadgeTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const BADGE_STYLE_PROVIDER: Provider = {
   provide: BADGE_STYLE,
   useClass: BadgeStyle,
-}
+};

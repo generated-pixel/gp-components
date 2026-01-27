@@ -1,13 +1,15 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type InputGroupTheme = ComponentStyleConfig
+export type InputGroupTheme = ComponentStyleConfig;
 
-export const INPUT_GROUP_STYLE = new InjectionToken<BaseStyle<InputGroupTheme>>('INPUT_GROUP_STYLE')
+export const INPUT_GROUP_STYLE = new InjectionToken<BaseStyle<InputGroupTheme>>(
+  'INPUT_GROUP_STYLE',
+);
 
 @Injectable()
 export class InputGroupStyle extends BaseStyle<InputGroupTheme> {
-  protected readonly componentName = 'gp-input-group'
+  protected readonly componentName = 'gp-input-group';
 
   protected getDefaultTheme(): InputGroupTheme {
     return {
@@ -40,11 +42,11 @@ export class InputGroupStyle extends BaseStyle<InputGroupTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const INPUT_GROUP_STYLE_PROVIDER: Provider = {
   provide: INPUT_GROUP_STYLE,
   useClass: InputGroupStyle,
-}
+};

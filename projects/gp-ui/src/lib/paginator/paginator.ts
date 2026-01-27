@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core'
-import { Base } from '../base/base'
-import { PAGINATOR_STYLE, PAGINATOR_STYLE_PROVIDER } from './style/paginator.style'
+import { Component, inject } from '@angular/core';
+import { Base } from '../base/base';
+import { PAGINATOR_STYLE, PAGINATOR_STYLE_PROVIDER } from './style/paginator.style';
 
 @Component({
   selector: 'gp-paginator',
@@ -9,9 +9,9 @@ import { PAGINATOR_STYLE, PAGINATOR_STYLE_PROVIDER } from './style/paginator.sty
   providers: [PAGINATOR_STYLE_PROVIDER],
 })
 export class Paginator extends Base {
-  private readonly style = inject(PAGINATOR_STYLE)
+  private readonly style = inject(PAGINATOR_STYLE);
 
   onInit(): void {
-    this.attachStyle(this.style)
+    this.attachStyle(this.style);
   }
 }

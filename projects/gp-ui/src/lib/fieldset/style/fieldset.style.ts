@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type FieldsetTheme = ComponentStyleConfig
+export type FieldsetTheme = ComponentStyleConfig;
 
-export const FIELDSET_STYLE = new InjectionToken<BaseStyle<FieldsetTheme>>('FIELDSET_STYLE')
+export const FIELDSET_STYLE = new InjectionToken<BaseStyle<FieldsetTheme>>('FIELDSET_STYLE');
 
 @Injectable()
 export class FieldsetStyle extends BaseStyle<FieldsetTheme> {
-  protected readonly componentName = 'gp-fieldset'
+  protected readonly componentName = 'gp-fieldset';
 
   protected getDefaultTheme(): FieldsetTheme {
     return {
@@ -40,11 +40,11 @@ export class FieldsetStyle extends BaseStyle<FieldsetTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const FIELDSET_STYLE_PROVIDER: Provider = {
   provide: FIELDSET_STYLE,
   useClass: FieldsetStyle,
-}
+};

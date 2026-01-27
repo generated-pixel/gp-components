@@ -1,18 +1,18 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../../base/style/base.style';
 
-export type BaseIconTheme = ComponentStyleConfig
+export type BaseIconTheme = ComponentStyleConfig;
 
-export const BASE_ICON_STYLE = new InjectionToken<BaseStyle<BaseIconTheme>>('BASE_ICON_STYLE')
+export const BASE_ICON_STYLE = new InjectionToken<BaseStyle<BaseIconTheme>>('BASE_ICON_STYLE');
 
 @Injectable()
 export class BaseIconStyle extends BaseStyle<BaseIconTheme> {
-  protected readonly componentName: string = 'gp-icon-base'
+  protected readonly componentName: string = 'gp-icon-base';
 
   protected getDefaultTheme(): BaseIconTheme {
-    const sizeVar = `var(--${this.componentName}-size)`
-    const colorVar = `var(--${this.componentName}-color)`
-    const strokeWidthVar = `var(--${this.componentName}-stroke-width)`
+    const sizeVar = `var(--${this.componentName}-size)`;
+    const colorVar = `var(--${this.componentName}-color)`;
+    const strokeWidthVar = `var(--${this.componentName}-stroke-width)`;
 
     return {
       classes: ['gp-icon-root'],
@@ -44,11 +44,11 @@ export class BaseIconStyle extends BaseStyle<BaseIconTheme> {
           vector-effect: non-scaling-stroke;
         }
       `,
-    }
+    };
   }
 }
 
 export const BASE_ICON_STYLE_PROVIDER: Provider = {
   provide: BASE_ICON_STYLE,
   useClass: BaseIconStyle,
-}
+};

@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type AvatarTheme = ComponentStyleConfig
+export type AvatarTheme = ComponentStyleConfig;
 
-export const AVATAR_STYLE = new InjectionToken<BaseStyle<AvatarTheme>>('AVATAR_STYLE')
+export const AVATAR_STYLE = new InjectionToken<BaseStyle<AvatarTheme>>('AVATAR_STYLE');
 
 @Injectable()
 export class AvatarStyle extends BaseStyle<AvatarTheme> {
-  protected readonly componentName = 'gp-avatar'
+  protected readonly componentName = 'gp-avatar';
 
   protected getDefaultTheme(): AvatarTheme {
     return {
@@ -40,11 +40,11 @@ export class AvatarStyle extends BaseStyle<AvatarTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const AVATAR_STYLE_PROVIDER: Provider = {
   provide: AVATAR_STYLE,
   useClass: AvatarStyle,
-}
+};

@@ -1,13 +1,15 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type ScrollPanelTheme = ComponentStyleConfig
+export type ScrollPanelTheme = ComponentStyleConfig;
 
-export const SCROLL_PANEL_STYLE = new InjectionToken<BaseStyle<ScrollPanelTheme>>('SCROLL_PANEL_STYLE')
+export const SCROLL_PANEL_STYLE = new InjectionToken<BaseStyle<ScrollPanelTheme>>(
+  'SCROLL_PANEL_STYLE',
+);
 
 @Injectable()
 export class ScrollPanelStyle extends BaseStyle<ScrollPanelTheme> {
-  protected readonly componentName = 'gp-scroll-panel'
+  protected readonly componentName = 'gp-scroll-panel';
 
   protected getDefaultTheme(): ScrollPanelTheme {
     return {
@@ -40,11 +42,11 @@ export class ScrollPanelStyle extends BaseStyle<ScrollPanelTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const SCROLL_PANEL_STYLE_PROVIDER: Provider = {
   provide: SCROLL_PANEL_STYLE,
   useClass: ScrollPanelStyle,
-}
+};

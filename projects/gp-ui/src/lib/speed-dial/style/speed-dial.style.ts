@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type SpeedDialTheme = ComponentStyleConfig
+export type SpeedDialTheme = ComponentStyleConfig;
 
-export const SPEED_DIAL_STYLE = new InjectionToken<BaseStyle<SpeedDialTheme>>('SPEED_DIAL_STYLE')
+export const SPEED_DIAL_STYLE = new InjectionToken<BaseStyle<SpeedDialTheme>>('SPEED_DIAL_STYLE');
 
 @Injectable()
 export class SpeedDialStyle extends BaseStyle<SpeedDialTheme> {
-  protected readonly componentName = 'gp-speed-dial'
+  protected readonly componentName = 'gp-speed-dial';
 
   protected getDefaultTheme(): SpeedDialTheme {
     return {
@@ -40,11 +40,11 @@ export class SpeedDialStyle extends BaseStyle<SpeedDialTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const SPEED_DIAL_STYLE_PROVIDER: Provider = {
   provide: SPEED_DIAL_STYLE,
   useClass: SpeedDialStyle,
-}
+};

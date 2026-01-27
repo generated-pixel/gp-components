@@ -1,13 +1,15 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type TieredMenuTheme = ComponentStyleConfig
+export type TieredMenuTheme = ComponentStyleConfig;
 
-export const TIERED_MENU_STYLE = new InjectionToken<BaseStyle<TieredMenuTheme>>('TIERED_MENU_STYLE')
+export const TIERED_MENU_STYLE = new InjectionToken<BaseStyle<TieredMenuTheme>>(
+  'TIERED_MENU_STYLE',
+);
 
 @Injectable()
 export class TieredMenuStyle extends BaseStyle<TieredMenuTheme> {
-  protected readonly componentName = 'gp-tiered-menu'
+  protected readonly componentName = 'gp-tiered-menu';
 
   protected getDefaultTheme(): TieredMenuTheme {
     return {
@@ -40,11 +42,11 @@ export class TieredMenuStyle extends BaseStyle<TieredMenuTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const TIERED_MENU_STYLE_PROVIDER: Provider = {
   provide: TIERED_MENU_STYLE,
   useClass: TieredMenuStyle,
-}
+};

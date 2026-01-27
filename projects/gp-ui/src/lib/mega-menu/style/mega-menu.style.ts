@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type MegaMenuTheme = ComponentStyleConfig
+export type MegaMenuTheme = ComponentStyleConfig;
 
-export const MEGA_MENU_STYLE = new InjectionToken<BaseStyle<MegaMenuTheme>>('MEGA_MENU_STYLE')
+export const MEGA_MENU_STYLE = new InjectionToken<BaseStyle<MegaMenuTheme>>('MEGA_MENU_STYLE');
 
 @Injectable()
 export class MegaMenuStyle extends BaseStyle<MegaMenuTheme> {
-  protected readonly componentName = 'gp-mega-menu'
+  protected readonly componentName = 'gp-mega-menu';
 
   protected getDefaultTheme(): MegaMenuTheme {
     return {
@@ -40,11 +40,11 @@ export class MegaMenuStyle extends BaseStyle<MegaMenuTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const MEGA_MENU_STYLE_PROVIDER: Provider = {
   provide: MEGA_MENU_STYLE,
   useClass: MegaMenuStyle,
-}
+};

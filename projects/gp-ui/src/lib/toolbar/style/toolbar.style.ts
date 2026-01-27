@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type ToolbarTheme = ComponentStyleConfig
+export type ToolbarTheme = ComponentStyleConfig;
 
-export const TOOLBAR_STYLE = new InjectionToken<BaseStyle<ToolbarTheme>>('TOOLBAR_STYLE')
+export const TOOLBAR_STYLE = new InjectionToken<BaseStyle<ToolbarTheme>>('TOOLBAR_STYLE');
 
 @Injectable()
 export class ToolbarStyle extends BaseStyle<ToolbarTheme> {
-  protected readonly componentName = 'gp-toolbar'
+  protected readonly componentName = 'gp-toolbar';
 
   protected getDefaultTheme(): ToolbarTheme {
     return {
@@ -40,11 +40,11 @@ export class ToolbarStyle extends BaseStyle<ToolbarTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const TOOLBAR_STYLE_PROVIDER: Provider = {
   provide: TOOLBAR_STYLE,
   useClass: ToolbarStyle,
-}
+};

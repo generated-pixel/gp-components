@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core'
-import { Base } from '../base/base'
-import { PROGRESS_BAR_STYLE, PROGRESS_BAR_STYLE_PROVIDER } from './style/progress-bar.style'
+import { Component, inject } from '@angular/core';
+import { Base } from '../base/base';
+import { PROGRESS_BAR_STYLE, PROGRESS_BAR_STYLE_PROVIDER } from './style/progress-bar.style';
 
 @Component({
   selector: 'gp-progress-bar',
@@ -9,9 +9,9 @@ import { PROGRESS_BAR_STYLE, PROGRESS_BAR_STYLE_PROVIDER } from './style/progres
   providers: [PROGRESS_BAR_STYLE_PROVIDER],
 })
 export class ProgressBar extends Base {
-  private readonly style = inject(PROGRESS_BAR_STYLE)
+  private readonly style = inject(PROGRESS_BAR_STYLE);
 
   onInit(): void {
-    this.attachStyle(this.style)
+    this.attachStyle(this.style);
   }
 }

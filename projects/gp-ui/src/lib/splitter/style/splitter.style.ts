@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type SplitterTheme = ComponentStyleConfig
+export type SplitterTheme = ComponentStyleConfig;
 
-export const SPLITTER_STYLE = new InjectionToken<BaseStyle<SplitterTheme>>('SPLITTER_STYLE')
+export const SPLITTER_STYLE = new InjectionToken<BaseStyle<SplitterTheme>>('SPLITTER_STYLE');
 
 @Injectable()
 export class SplitterStyle extends BaseStyle<SplitterTheme> {
-  protected readonly componentName = 'gp-splitter'
+  protected readonly componentName = 'gp-splitter';
 
   protected getDefaultTheme(): SplitterTheme {
     return {
@@ -40,11 +40,11 @@ export class SplitterStyle extends BaseStyle<SplitterTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const SPLITTER_STYLE_PROVIDER: Provider = {
   provide: SPLITTER_STYLE,
   useClass: SplitterStyle,
-}
+};

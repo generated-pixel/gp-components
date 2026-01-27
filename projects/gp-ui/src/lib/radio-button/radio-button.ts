@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core'
-import { BaseEditable } from '../base-editable/base-editable'
-import { RADIO_BUTTON_STYLE, RADIO_BUTTON_STYLE_PROVIDER } from './style/radio-button.style'
+import { Component, inject } from '@angular/core';
+import { BaseEditable } from '../base-editable/base-editable';
+import { RADIO_BUTTON_STYLE, RADIO_BUTTON_STYLE_PROVIDER } from './style/radio-button.style';
 
 @Component({
   selector: 'gp-radio-button',
@@ -9,9 +9,9 @@ import { RADIO_BUTTON_STYLE, RADIO_BUTTON_STYLE_PROVIDER } from './style/radio-b
   providers: [RADIO_BUTTON_STYLE_PROVIDER],
 })
 export class RadioButton extends BaseEditable {
-  private readonly style = inject(RADIO_BUTTON_STYLE)
+  private readonly style = inject(RADIO_BUTTON_STYLE);
 
   onInit(): void {
-    this.attachStyle(this.style)
+    this.attachStyle(this.style);
   }
 }

@@ -1,7 +1,7 @@
-import { Component, inject } from '@angular/core'
-import { BaseIcon } from '../base-icon/base-icon'
-import { BASE_ICON_STYLE_PROVIDER } from '../base-icon/style/base-icon.style'
-import { EYE_ICON_STYLE, EYE_ICON_STYLE_PROVIDER } from './style/eye-icon.style'
+import { Component, inject } from '@angular/core';
+import { BaseIcon } from '../base-icon/base-icon';
+import { BASE_ICON_STYLE_PROVIDER } from '../base-icon/style/base-icon.style';
+import { EYE_ICON_STYLE, EYE_ICON_STYLE_PROVIDER } from './style/eye-icon.style';
 
 @Component({
   selector: '[data-gp-icon="eye"]',
@@ -17,10 +17,10 @@ import { EYE_ICON_STYLE, EYE_ICON_STYLE_PROVIDER } from './style/eye-icon.style'
   providers: [BASE_ICON_STYLE_PROVIDER, EYE_ICON_STYLE_PROVIDER],
 })
 export class EyeIcon extends BaseIcon {
-  private readonly eyeStyle = inject(EYE_ICON_STYLE)
+  private readonly eyeStyle = inject(EYE_ICON_STYLE);
 
   override onInit(): void {
-    super.onInit()
-    this.attachStyle(this.eyeStyle)
+    super.onInit();
+    this.attachStyle(this.eyeStyle);
   }
 }

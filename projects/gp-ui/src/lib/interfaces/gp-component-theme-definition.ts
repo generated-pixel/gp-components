@@ -1,8 +1,8 @@
-import { ComponentVarsDefinition, StyleValue } from '../base/style/base.style'
+import { ComponentVarsDefinition, StyleValue } from '../base/style/base.style';
 
 export interface GpComponentThemeDefinition {
-  classes?: string[]
-  host?: Record<string, StyleValue>
-  vars?: ComponentVarsDefinition
-  css?: string
+  classes?: string[];
+  host?: Record<string, StyleValue>;
+  vars?: ComponentVarsDefinition;
+  css?: string;
 }

@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core'
-import { Base } from '../base/base'
-import { TOAST_STYLE, TOAST_STYLE_PROVIDER } from './style/toast.style'
+import { Component, inject } from '@angular/core';
+import { Base } from '../base/base';
+import { TOAST_STYLE, TOAST_STYLE_PROVIDER } from './style/toast.style';
 
 @Component({
   selector: 'gp-toast',
@@ -9,9 +9,9 @@ import { TOAST_STYLE, TOAST_STYLE_PROVIDER } from './style/toast.style'
   providers: [TOAST_STYLE_PROVIDER],
 })
 export class Toast extends Base {
-  private readonly style = inject(TOAST_STYLE)
+  private readonly style = inject(TOAST_STYLE);
 
   onInit(): void {
-    this.attachStyle(this.style)
+    this.attachStyle(this.style);
   }
 }

@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type DialogTheme = ComponentStyleConfig
+export type DialogTheme = ComponentStyleConfig;
 
-export const DIALOG_STYLE = new InjectionToken<BaseStyle<DialogTheme>>('DIALOG_STYLE')
+export const DIALOG_STYLE = new InjectionToken<BaseStyle<DialogTheme>>('DIALOG_STYLE');
 
 @Injectable()
 export class DialogStyle extends BaseStyle<DialogTheme> {
-  protected readonly componentName = 'gp-dialog'
+  protected readonly componentName = 'gp-dialog';
 
   protected getDefaultTheme(): DialogTheme {
     return {
@@ -40,11 +40,11 @@ export class DialogStyle extends BaseStyle<DialogTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const DIALOG_STYLE_PROVIDER: Provider = {
   provide: DIALOG_STYLE,
   useClass: DialogStyle,
-}
+};

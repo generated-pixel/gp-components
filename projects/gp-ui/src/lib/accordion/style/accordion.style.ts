@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken, Provider } from '@angular/core'
-import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style'
+import { Injectable, InjectionToken, Provider } from '@angular/core';
+import { BaseStyle, ComponentStyleConfig } from '../../base/style/base.style';
 
-export type AccordionTheme = ComponentStyleConfig
+export type AccordionTheme = ComponentStyleConfig;
 
-export const ACCORDION_STYLE = new InjectionToken<BaseStyle<AccordionTheme>>('ACCORDION_STYLE')
+export const ACCORDION_STYLE = new InjectionToken<BaseStyle<AccordionTheme>>('ACCORDION_STYLE');
 
 @Injectable()
 export class AccordionStyle extends BaseStyle<AccordionTheme> {
-  protected readonly componentName = 'gp-accordion'
+  protected readonly componentName = 'gp-accordion';
 
   protected getDefaultTheme(): AccordionTheme {
     return {
@@ -40,11 +40,11 @@ export class AccordionStyle extends BaseStyle<AccordionTheme> {
           }
         }
       `,
-    }
+    };
   }
 }
 
 export const ACCORDION_STYLE_PROVIDER: Provider = {
   provide: ACCORDION_STYLE,
   useClass: AccordionStyle,
-}
+};

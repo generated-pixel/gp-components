@@ -6,57 +6,25 @@ import {
   GpThemeSemanticDefinition,
 } from '../interfaces'
 import { resolveThemeComponents } from './theme-definition.utils'
+import { GP_BASE_THEME_PRIMITIVES } from './palette'
+
+const P = GP_BASE_THEME_PRIMITIVES
 
 const GP_DEFAULT_THEME_PRIMITIVES: GpThemePrimitiveDefinition = {
-  gray: {
-    50: '#f8fafc',
-    100: '#f1f5f9',
-    200: '#e2e8f0',
-    300: '#cbd5e1',
-    400: '#94a3b8',
-    500: '#64748b',
-    600: '#475569',
-    700: '#334155',
-    800: '#1f2937',
-    900: '#0f172a',
-  },
-  blue: {
-    50: '#eff6ff',
-    100: '#dbeafe',
-    200: '#bfdbfe',
-    300: '#93c5fd',
-    400: '#60a5fa',
-    500: '#3b82f6',
-    600: '#2563eb',
-    700: '#1d4ed8',
-    800: '#1e40af',
-    900: '#1e3a8a',
-  },
-  indigo: {
-    50: '#eef2ff',
-    100: '#e0e7ff',
-    200: '#c7d2fe',
-    300: '#a5b4fc',
-    400: '#818cf8',
-    500: '#6366f1',
-    600: '#4f46e5',
-    700: '#4338ca',
-    800: '#3730a3',
-    900: '#312e81',
-  },
+  ...GP_BASE_THEME_PRIMITIVES,
 }
 
 const GP_DEFAULT_THEME_SEMANTIC: GpThemeSemanticDefinition = {
   colorSchema: {
     light: {
-      backgroundColor: '#ffffff',
-      surfaceColor: '#f8fafc',
-      textColor: '#0f172a',
+      backgroundColor: P.neutral[50],
+      surfaceColor: P.slate[50],
+      textColor: P.slate[900],
     },
     dark: {
-      backgroundColor: '#0f172a',
-      surfaceColor: '#111827',
-      textColor: '#e2e8f0',
+      backgroundColor: P.slate[900],
+      surfaceColor: P.gray[900],
+      textColor: P.slate[200],
     },
   },
   container: {
@@ -65,8 +33,8 @@ const GP_DEFAULT_THEME_SEMANTIC: GpThemeSemanticDefinition = {
       width: '1px',
       radius: '0.875rem',
       color: {
-        light: '#e2e8f0',
-        dark: '#1f2937',
+        light: P.slate[200],
+        dark: P.gray[800],
       },
     },
     shadow: {
@@ -82,25 +50,25 @@ const GP_DEFAULT_THEME_SEMANTIC: GpThemeSemanticDefinition = {
       focusWidth: '2px',
       radius: '0.375rem',
       color: {
-        light: '#dbeafe',
-        dark: '#1f2937',
+        light: P.blue[100],
+        dark: P.gray[800],
       },
       focusColor: {
-        light: '#6366f1',
-        dark: '#38bdf8',
+        light: P.indigo[500],
+        dark: P.sky[300],
       },
     },
     background: {
-      light: '#f8fafc',
-      dark: '#0f172a',
+      light: P.slate[50],
+      dark: P.slate[900],
     },
     color: {
-      light: '#0f172a',
-      dark: '#e2e8f0',
+      light: P.slate[900],
+      dark: P.slate[200],
     },
     placeholderColor: {
-      light: '#94a3b8',
-      dark: '#64748b',
+      light: P.slate[400],
+      dark: P.slate[500],
     },
     focusRing: {
       light: '0 0 0 2px rgba(99, 102, 241, 0.35)',
@@ -114,39 +82,39 @@ const GP_DEFAULT_THEME_SEMANTIC: GpThemeSemanticDefinition = {
     textTransform: 'none',
     letterSpacing: '0',
     color: {
-      light: '#334155',
-      dark: '#e2e8f0',
+      light: P.slate[700],
+      dark: P.slate[200],
     },
     requiredColor: {
-      light: '#f43f5e',
-      dark: '#f97316',
+      light: P.rose[500],
+      dark: P.orange[500],
     },
   },
   themeSwitcher: {
     gap: '0.75rem',
     controlGap: '0.25rem',
     labelColor: {
-      light: '#1f2937',
-      dark: '#e2e8f0',
+      light: P.gray[800],
+      dark: P.slate[200],
     },
     select: {
       radius: '0.375rem',
       padding: '0.375rem 0.5rem',
       background: {
-        light: '#ffffff',
-        dark: '#0f172a',
+        light: P.neutral[50],
+        dark: P.slate[900],
       },
       border: {
-        light: '#d1d5db',
-        dark: '#1f2937',
+        light: P.gray[300],
+        dark: P.gray[800],
       },
       color: {
-        light: '#111827',
-        dark: '#f8fafc',
+        light: P.gray[900],
+        dark: P.slate[100],
       },
       focusBorder: {
-        light: '#6366f1',
-        dark: '#38bdf8',
+        light: P.indigo[500],
+        dark: P.sky[300],
       },
       focusRing: {
         light: '0 0 0 2px rgba(99, 102, 241, 0.35)',
@@ -157,8 +125,8 @@ const GP_DEFAULT_THEME_SEMANTIC: GpThemeSemanticDefinition = {
   icon: {
     size: '1.25rem',
     color: {
-      light: '#4f46e5',
-      dark: '#38bdf8',
+      light: P.indigo[600],
+      dark: P.sky[300],
     },
     strokeWidth: {
       light: '1.75',
@@ -221,6 +189,494 @@ const GP_DEFAULT_THEME_SEMANTIC: GpThemeSemanticDefinition = {
       },
       dark: {
         themeOverlayBackground: 'rgba(2, 6, 23, 0.55)',
+      },
+    },
+  },
+  autocomplete: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  cascadeselect: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  checkbox: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  datepicker: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  inputgroup: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  inputmask: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  inputnumber: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  inputotp: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  listbox: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  multiselect: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  radiobutton: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  select: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  selectbutton: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  slider: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  textarea: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  togglebutton: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  toggleswitch: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  button: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  speeddial: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  splitbutton: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  dataview: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  orderlist: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  orgchart: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  paginator: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  picklist: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  table: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  timeline: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  tree: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  treetable: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  accordion: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  card: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  divider: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  fieldset: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  scrollpanel: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  splitter: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  stepper: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  tabs: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  toolbar: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  breadcrumb: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  contextmenu: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  menu: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  menubar: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  megamenu: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  panelmenu: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  tieredmenu: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  confirmpopup: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  dialog: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  drawer: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  message: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  toast: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  upload: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  avatar: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  badge: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  carousel: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  chip: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  image: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  metergroup: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  progressbar: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  progressspinner: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  rating: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
+      },
+    },
+  },
+  skeleton: {
+    vars: {
+      default: {
+        themeMobileWidth: '100%',
+        themeMobilePadding: '0.5rem',
       },
     },
   },

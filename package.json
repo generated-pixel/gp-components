@@ -1,6 +1,6 @@
 {
   "name": "gp-ui-suite",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "ng:serve": "ng serve",
@@ -16,7 +16,6 @@
     "lib:build": "ng build gp-ui --configuration=production && node tools/bundle-css.js",
     "lib:watch": "ng build gp-ui --watch --configuration=development"
   },
-  "private": true,
   "dependencies": {
     "@angular/common": "^21.0.6",
     "@angular/compiler": "^21.0.6",
